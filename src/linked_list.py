@@ -26,3 +26,16 @@ class LinkedList():
         else:
             new_node = Node(val, self.head)
             self.head = new_node
+
+    def pop(self):
+        """Remove a new node from the head of the linked list."""
+        if self.head is not None:
+            try:
+                pop_head = self.head.value
+                self.head = self.head.next
+                return pop_head
+            except ValueError:
+                pop_head = self.head.value
+                self.head = None
+        else:
+            raise IndexError('cannot pop from empty list')

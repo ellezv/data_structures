@@ -1,5 +1,7 @@
 """Tests for our linked_list module."""
 
+import pytest
+
 
 def test_linked_list():
     """Test the instantiation of our Linked List."""
@@ -22,3 +24,11 @@ def test_push_linked_list():
     lst = LinkedList()
     lst.push(2)
     assert lst.head.value == 2
+
+
+def test_pop_linked_list():
+    """Test pop method in our LinkedList class."""
+    from linked_list import LinkedList
+    lst = LinkedList()
+    with pytest.raises(IndexError):
+        lst.pop()
