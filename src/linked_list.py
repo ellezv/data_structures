@@ -50,7 +50,7 @@ class LinkedList():
                 curr_node = curr_node.next
         return None
 
-    def remove(self, node):
+    def remove(self, val, node):
         """Search for node with matching value and removes it."""
         if self.head.val == val:
             self.head = self.head.next
@@ -64,3 +64,26 @@ class LinkedList():
             else:
                 prev_node = curr_node
                 curr_node = curr_node.next
+
+    def size(self):
+        """Return the length of the linked list."""
+        if self.head is not None:
+            size = 1
+            while self.head.next is not None:
+                size += 1
+            return size
+        return 0
+
+    def display(self):
+        """Return the linked list as a printed string of a tuple literal."""
+        output = "("
+        current = self.head
+        while current is not None:
+            if type(current.value) == str:
+                output += "'" + current.value + "'"
+            else:
+                output += current.value
+            if current.next is not None:
+                output += ', '
+            current = current.next
+        return output + ")"
