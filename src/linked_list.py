@@ -39,3 +39,16 @@ class LinkedList():
                 self.head = None
         else:
             raise IndexError('cannot pop from empty list')
+
+    def search(self, val):
+        """Search for the value in a list of nodes."""
+        curr_node = self.head
+        while curr_node is not None:
+            if curr_node.value == val:
+                return curr_node
+            else:
+                curr_node = curr_node.next
+        return None
+
+    def remove(self, node):
+        """Search for node with matching value and removes it."""
