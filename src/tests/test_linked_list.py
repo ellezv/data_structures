@@ -32,3 +32,4 @@ def test_pop_linked_list():
     lst = LinkedList()
     with pytest.raises(IndexError):
         lst.pop()
+
