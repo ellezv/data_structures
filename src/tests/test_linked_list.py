@@ -59,7 +59,6 @@ def test_size_one():
     assert lst.size() == 1
 
 
-<<<<<<< HEAD
 def test_search_linked_list_empty():
     """Test search method in our LinkedList class."""
     from linked_list import LinkedList
