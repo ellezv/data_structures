@@ -57,3 +57,18 @@ def test_size_one():
     lst = LinkedList()
     lst.push(4)
     assert lst.size() == 1
+
+
+def tests_display_empty():
+    """Test display method for empty linked list."""
+    from linked_list import LinkedList
+    lst = LinkedList()
+    assert lst.display() == "()"
+
+
+def tests_display_one():
+    """Test display method for list with one node."""
+    from linked_list import LinkedList
+    lst = LinkedList()
+    lst.push(2)
+    assert lst.display() == "(2)"
