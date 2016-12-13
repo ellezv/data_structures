@@ -50,9 +50,9 @@ class LinkedList():
                 curr_node = curr_node.next
         return None
 
-    def remove(self, val, node):
+    def remove(self, val):
         """Search for node with matching value and removes it."""
-        if self.head.val == val:
+        if self.head.value == val:
             self.head = self.head.next
             return
         curr_node = self.head.next

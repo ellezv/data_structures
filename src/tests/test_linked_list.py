@@ -57,3 +57,47 @@ def test_size_one():
     lst = LinkedList()
     lst.push(4)
     assert lst.size() == 1
+
+
+def test_search_linked_list_empty():
+    """Test search method in our LinkedList class."""
+    from linked_list import LinkedList
+    lst = LinkedList()
+    assert lst.search(2) is None
+
+
+def test_search_linked_list_single():
+    """Test search method in our LinkedList class."""
+    from linked_list import LinkedList
+    lst = LinkedList()
+    lst.push(3)
+    assert lst.search(3) is not None
+
+
+def test_search_linked_list_multi():
+    """Test search method in our LinkedList class."""
+    from linked_list import LinkedList
+    lst = LinkedList()
+    lst.push(1)
+    lst.push(2)
+    lst.push(3)
+    assert lst.search(2) is not None
+
+
+def test_remove_linked_list_single():
+    """Test remove method in our LinkedList class."""
+    from linked_list import LinkedList
+    lst = LinkedList()
+    lst.push(2)
+    lst.remove(2)
+    assert lst.size() == 0
+
+
+def test_remove_linked_list_multi():
+    """Test remove method in our LinkedList class."""
+    from linked_list import LinkedList
+    lst = LinkedList()
+    lst.push(5)
+    lst.push(2)
+    lst.remove(2)
+    assert lst.size() == 1
