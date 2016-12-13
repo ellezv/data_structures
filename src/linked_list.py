@@ -64,5 +64,3 @@ class LinkedList():
             else:
                 prev_node = curr_node
                 curr_node = curr_node.next
-
-
