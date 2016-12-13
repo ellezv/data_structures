@@ -84,7 +84,7 @@ class LinkedList():
             if type(current.value) == str:
                 output += "'" + current.value + "'"
             else:
-                output += current.value
+                output += str(current.value)
             if current.next is not None:
                 output += ', '
             current = current.next
