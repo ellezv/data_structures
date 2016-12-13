@@ -32,3 +32,28 @@ def test_pop_linked_list():
     lst = LinkedList()
     with pytest.raises(IndexError):
         lst.pop()
+
+
+def test_size():
+    """Test size method on LinkedList class."""
+    from linked_list import LinkedList
+    lst = LinkedList()
+    lst.push(2)
+    lst.push(3)
+    lst.push(4)
+    assert lst.size() == 3
+
+
+def test_size_empty():
+    """Test size method for empty linked list."""
+    from linked_list import LinkedList
+    lst = LinkedList()
+    assert lst.size() == 0
+
+
+def test_size_one():
+    """Test size method for list with one node."""
+    from linked_list import LinkedList
+    lst = LinkedList()
+    lst.push(4)
+    assert lst.size() == 1

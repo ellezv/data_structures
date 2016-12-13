@@ -69,8 +69,10 @@ class LinkedList():
         """Return the length of the linked list."""
         if self.head is not None:
             size = 1
-            while self.head.next is not None:
+            curr = self.head
+            while curr.next is not None:
                 size += 1
+                curr = curr.next
             return size
         return 0
 
