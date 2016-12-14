@@ -1,4 +1,4 @@
-"""Test for stack module."""
+"""Stack implementation using previously written methods- push and pop."""
 
 
 class Node(object):
