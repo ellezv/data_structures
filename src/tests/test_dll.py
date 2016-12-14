@@ -26,7 +26,7 @@ def test_push_value_in_not_empty_list():
     assert new_dll.head.value == 3
 
 
-def test_push_value_in_not_empty_list():
+def test_tail_after_push_in_list():
     from dll import DbLinkedList
     new_dll = DbLinkedList(5)
     new_dll.push(3)
