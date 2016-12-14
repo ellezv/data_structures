@@ -1,10 +1,10 @@
-"""Tests for our linked_list module."""
+"""Test for our linked_list module."""
 
 import pytest
 
 
 def test_linked_list():
-    """Test the instantiation of our Linked List."""
+    """Test the instantiation of Stack."""
     from linked_list import LinkedList
     lst = LinkedList()
     if lst.head is None:
