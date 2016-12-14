@@ -17,14 +17,15 @@ class DbLinkedList():
         self.head = None
         self.tail = None
         if value:
-            new_node = Node(value)
-            self.head = new_node
-            self.tail = new_node.next
+            self.push(value)
 
     def push(self, value=None):
         """Pushes vale to the head of dll."""
-        new_node = Node(val, self.head, None)
+        new_node = Node(value, self.head, None)
+        orig_node = self.head
         self.head = new_node
-        node.next_node = self.orig_node
-        node.prev_node = None
+        new_node.next = orig_node
+        new_node.prev_node = None
+        if self.tail is None:
+            self.tail = orig_node
 
