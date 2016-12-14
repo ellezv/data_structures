@@ -41,3 +41,8 @@ class DbLinkedList():
 
     def pop(self):
         """Pop first value off of the head of dll."""
+        if self.head:
+            returned_value = self.head.value
+            self.head = self.head.next
+            return returned_value
+        raise ValueError("Cannot pop from an empty list")
