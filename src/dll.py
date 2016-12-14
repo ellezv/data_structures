@@ -20,3 +20,11 @@ class DbLinkedList():
             new_node = Node(value)
             self.head = new_node
             self.tail = new_node.next
+
+    def push(self, value=None):
+        """Pushes vale to the head of dll."""
+        new_node = Node(val, self.head, None)
+        self.head = new_node
+        node.next_node = self.orig_node
+        node.prev_node = None
+
