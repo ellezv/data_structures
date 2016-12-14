@@ -26,12 +26,19 @@ def test_push_linked_list():
     assert lst.head.value == 2
 
 
-def test_pop_linked_list():
-    """Test pop method in our LinkedList class."""
+def test_pop_empty_linked_list():
+    """Test pop method in our LinkedList class wit empty list."""
     from linked_list import LinkedList
     lst = LinkedList()
     with pytest.raises(IndexError):
         lst.pop()
+
+
+def test_pop_linked():
+    """Test pop method on populated linked list."""
+    from linked_list import LinkedList
+    lst = LinkedList([1, 2, 3, 4, 5])
+    assert lst.pop() == 5
 
 
 def test_size():

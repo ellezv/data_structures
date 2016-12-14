@@ -28,15 +28,22 @@ def test_pop_stack(new_stack):
     assert new_stack._linkedlist.head is None
 
 
-def test_new_stack_head_is_last_iter():
-    """Test that the new_stack head is the last iterable"""
+def test_pop_stack_returns_popped_val():
+    """Test that pop method returns value popped off."""
     from stack import Stack
-    stck = Stack([1,2,3,4,5])
+    stk = Stack([1, 2, 3, 4, 5])
+    assert stk.pop() == 5
+
+
+def test_new_stack_head_is_last_iter():
+    """Test that the new_stack head is the last iterable."""
+    from stack import Stack
+    stck = Stack([1, 2, 3, 4, 5])
     assert stck._linkedlist.head.value is 5
 
 
 def test_new_stack_without_iter_raises_typeerr():
-    """Test that instantiating a new stack with a non iter raises Type Error."""
+    """Test that instantiating a new stack with a non iter raise Type Error."""
     from stack import Stack
     with pytest.raises(TypeError):
         Stack(42)

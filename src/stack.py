@@ -20,4 +20,4 @@ class Stack(object):
 
     def pop(self):
         """Pop the first value of the stack."""
-        self._linkedlist.pop()
+        return self._linkedlist.pop()
