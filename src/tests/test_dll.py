@@ -49,3 +49,20 @@ def test_tail_after_append_in_list(new_dll):
 def test_head_after_append_in_list(new_dll):
     new_dll.append(6)
     assert new_dll.head.value == 3
+
+
+def test_pop_empty_list():
+    from dll import DbLinkedList
+    dll = DbLinkedList()
+    msg = "Cannot pop from an empty list"
+    with pytest.raises(ValueError, message=msg):
+        dll.pop()
+
+
+def test_pop_returns_value(new_dll):
+    assert new_dll.pop() == 3
+
+
+def test_pop_sets_new_head(new_dll):
+    new_dll.pop()
+    assert new_dll.head.value == 4
