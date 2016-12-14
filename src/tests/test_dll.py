@@ -1,5 +1,16 @@
 """Tests for our dll module."""
 
+import pytest
+
+
+@pytest.fixture
+def new_dll():
+    from dll import DbLinkedList
+    dll = DbLinkedList(5)
+    dll.push(4)
+    dll.push(3)
+    return dll
+
 
 def test_init_empty_node():
     from dll import Node
@@ -26,9 +37,15 @@ def test_push_value_in_not_empty_list():
     assert new_dll.head.value == 3
 
 
-def test_tail_after_push_in_list():
-    from dll import DbLinkedList
-    new_dll = DbLinkedList(5)
-    new_dll.push(3)
+def test_tail_after_push_in_list(new_dll):
     assert new_dll.tail.value == 5
 
+
+def test_tail_after_append_in_list(new_dll):
+    new_dll.append(6)
+    assert new_dll.tail.value == 6
+
+
+def test_head_after_append_in_list(new_dll):
+    new_dll.append(6)
+    assert new_dll.head.value == 3

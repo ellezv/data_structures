@@ -1,5 +1,15 @@
 """Python implementation of a linked list."""
 
+import pytest
+
+
+@pytest.fixture
+def new_dll():
+    from dll import DbLinkedList
+    dll = DbLinkedList(5)
+    dll.push(4).push(3)
+    return dll
+
 
 class Node():
     """Instantiate a Node."""
