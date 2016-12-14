@@ -66,3 +66,13 @@ def test_pop_returns_value(new_dll):
 def test_pop_sets_new_head(new_dll):
     new_dll.pop()
     assert new_dll.head.value == 4
+
+
+def test_pop_sets_new_head_previous(new_dll):
+    new_dll.pop()
+    assert new_dll.head.previous is None
+
+
+def test_pop_sets_new_head_next(new_dll):
+    new_dll.pop()
+    assert new_dll.head.next.value == 5
