@@ -44,5 +44,33 @@ class DbLinkedList():
         if self.head:
             returned_value = self.head.value
             self.head = self.head.next
+            self.head.previous = None
             return returned_value
         raise ValueError("Cannot pop from an empty list")
+
+    def shift(self):
+        """Remove last value off of the tail of dll."""
+        if self.tail:
+            returned_value = self.tail.value
+            self.tail = self.tail.previous
+            self.tail.next = None
+            return returned_value
+        raise ValueError("Cannot shift from an empty list")
+
+    def remove(self, val):
+        """Search for node with matching value and remove it."""
+        curr_node = self.head
+        while curr_node is not None:
+            if curr_node.value == val:
+                if self.head == curr_node:
+                    self.head = curr_node.next
+                    self.head.previous = None
+                elif self.tail == curr_node:
+                    self.tail = self.tail.previous
+                    self.tail = None
+                else:
+                    curr_node.previous.next = curr_node.next
+                    curr_node.next.previous = curr_node.previous
+            else:
+                curr_node = curr_node.next
+        return None
