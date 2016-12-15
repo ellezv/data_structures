@@ -48,6 +48,7 @@ class DbLinkedList():
             returned_value = self.head.value
             self.head = self.head.next
             self.head.previous = None
+            self.length -= 1
             return returned_value
         raise ValueError("Cannot pop from an empty list")
 
@@ -56,27 +57,26 @@ class DbLinkedList():
         if self.head:
             returned_value = self.tail.value
             self.tail = self.tail.previous
-            # self.tail.next = None
+            self.tail.next = None
+            self.length -= 1
             return returned_value
         raise ValueError("Cannot shift from an empty list")
 
     def remove(self, value):
         """Remove the value from the dll."""
-        if self.length:
-            if self.head.value == value:
-                self.head = self.head.next
-                self.head.previous = None
-                return
-            try:
-                curr_node = self.head.next
-                prev_node = self.head
+        curr_node = self.head
+        if not self.length:
+            raise ValueError("Cannot remove from an empty list")
+        else:
+            if curr_node.value == value:
+                self.pop()
+            else:
                 while curr_node is not None:
                     if curr_node.value == value:
-                        prev_node.next = curr_node.next
+                        curr_node.previous.next = curr_node.next
+                        curr_node.next.previous = curr_node.previous
+                        print("{} was removed".format(value))
                         return
-                else:
-                    prev_node = curr_node
-                    curr_node = curr_node.next
-            except AttributeError:
-                raise ValueError("{} is not in list".format(value))
-        raise ValueError("Cannot remove from an empty list")
+                    else:
+                        curr_node = curr_node.next
+            raise ValueError("{} not in the list".format(value))
