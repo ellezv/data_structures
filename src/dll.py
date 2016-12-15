@@ -50,5 +50,7 @@ class DbLinkedList():
     def shift(self):
         """Remove and return the last value of the dll."""
         if self.head:
-            return
+            returned_value = self.tail.value
+            self.tail = self.tail.previous
+            return returned_value
         raise ValueError("Cannot shift from an empty list")
