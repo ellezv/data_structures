@@ -46,3 +46,9 @@ class DbLinkedList():
             self.head = self.head.next
             return returned_value
         raise ValueError("Cannot pop from an empty list")
+
+    def shift(self):
+        """Remove and return the last value of the dll."""
+        if self.head:
+            return
+        raise ValueError("Cannot shift from an empty list")

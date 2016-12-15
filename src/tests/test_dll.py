@@ -76,3 +76,11 @@ def test_pop_sets_new_head_previous(new_dll):
 def test_pop_sets_new_head_next(new_dll):
     new_dll.pop()
     assert new_dll.head.next.value == 5
+
+
+def shift_from_empty_list():
+    from dll import DbLinkedList
+    dll = DbLinkedList()
+    msg = "Cannot shift from an empty list"
+    with pytest.raises(ValueError, message=msg):
+        dll.shift()
