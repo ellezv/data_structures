@@ -18,26 +18,29 @@ class DbLinkedList():
         """."""
         self.head = None
         self.tail = None
+        self.length = 0
         if value:
             self.push(value)
 
     def push(self, value=None):
         """Push value to the head of dll."""
-        new_node = Node(value, self.head, None)
-        orig_node = self.head
+        new_node = Node(value, nxt=self.head)
+        if self.length < 1:
+            self.tail = new_node
+        else:
+            self.head.previous = new_node
         self.head = new_node
-        new_node.next = orig_node
-        if self.tail is None:
-            self.tail = self.head
+        self.length += 1
 
     def append(self, value):
         """Append value to the tail of dll."""
         new_node = Node(value, None, self.tail)
-        orig_node = self.tail
-        self.tail = new_node
-        new_node.prev_node = orig_node
-        if self.head is None:
-            self.head = self.tail
+        if self.length < 1:
+            self.head = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+        self.length += 1
 
     def pop(self):
         """Pop first value off of the head of dll."""
@@ -53,6 +56,27 @@ class DbLinkedList():
         if self.head:
             returned_value = self.tail.value
             self.tail = self.tail.previous
-            self.tail.next = None
+            # self.tail.next = None
             return returned_value
         raise ValueError("Cannot shift from an empty list")
+
+    def remove(self, value):
+        """Remove the value from the dll."""
+        if self.length:
+            if self.head.value == value:
+                self.head = self.head.next
+                self.head.previous = None
+                return
+            try:
+                curr_node = self.head.next
+                prev_node = self.head
+                while curr_node is not None:
+                    if curr_node.value == value:
+                        prev_node.next = curr_node.next
+                        return
+                else:
+                    prev_node = curr_node
+                    curr_node = curr_node.next
+            except AttributeError:
+                raise ValueError("{} is not in list".format(value))
+        raise ValueError("Cannot remove from an empty list")

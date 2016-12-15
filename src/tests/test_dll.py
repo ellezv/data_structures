@@ -90,8 +90,7 @@ def test_pop_sets_new_head_next(new_dll):
     new_dll.pop()
     assert new_dll.head.next.value == 5
 
-
-def shift_from_empty_list():
+def test_shift_from_empty_list():
     """Test shifting from empty list will raise proper error."""
     from dll import DbLinkedList
     dll = DbLinkedList()
@@ -100,12 +99,12 @@ def shift_from_empty_list():
         dll.shift()
 
 
-def shift_returns_value(new_dll):
+def test_shift_returns_value(new_dll):
     """Test shift will return shifted value."""
     assert new_dll.shift() == 5
 
 
-def shift_sets_new_tail_is_previous(new_dll):
+def test_shift_sets_new_tail_is_previous(new_dll):
     """Test shift will set new tail value."""
     new_dll.shift()
     assert new_dll.tail.value == 4
@@ -115,3 +114,10 @@ def shift_sets_new_tail_next(new_dll):
     """Test shift will set new tail next value to None."""
     new_dll.shift()
     assert new_dll.tail.next is None
+
+
+def test_remove_from_empty_list():
+    from dll import DbLinkedList
+    dll = DbLinkedList()
+    with pytest.raises(ValueError, message="Cannot remove from an empty list"):
+        dll.remove(5)
