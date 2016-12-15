@@ -44,6 +44,7 @@ class DbLinkedList():
         if self.head:
             returned_value = self.head.value
             self.head = self.head.next
+            self.head.previous = None
             return returned_value
         raise ValueError("Cannot pop from an empty list")
 
@@ -52,5 +53,6 @@ class DbLinkedList():
         if self.head:
             returned_value = self.tail.value
             self.tail = self.tail.previous
+            self.tail.next = None
             return returned_value
         raise ValueError("Cannot shift from an empty list")
