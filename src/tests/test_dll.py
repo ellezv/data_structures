@@ -111,7 +111,7 @@ def test_shift_sets_new_tail_is_previous(new_dll):
     assert new_dll.tail.value == 4
 
 
-def shift_sets_new_tail_next(new_dll):
+def test_shift_sets_new_tail_next(new_dll):
     """Test shift will set new tail next value to None."""
     new_dll.shift()
     assert new_dll.tail.next is None
