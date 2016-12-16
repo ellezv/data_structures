@@ -2,24 +2,25 @@
 
 from dll import DbLinkedList
 
+
 class Queue(object):
     """Create a queue which inherits from Double-linked List."""
 
     def __init__(self, value=None, next=None, previous=None):
         """Initialize new queue from dll using composition."""
         self._dblinkedlist = DbLinkedList()
+        if value:
+            self._dblinkedlist.append(value)
         self.head = self._dblinkedlist.head
         self.tail = self._dblinkedlist.tail
         self.length = self._dblinkedlist.length
-        if value:
-            self._dblinkedlist.append(value)
 
     def enqueue(self, value):
         """Add value to the tail of the queue."""
         self._dblinkedlist.append(value)
 
     def dequeue(self):
-        """Removes the first item in the queue and return value."""
+        """Remove the first item in the queue and return value."""
         try:
             return self._dblinkedlist.pop()
         except ValueError:
