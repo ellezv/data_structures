@@ -18,10 +18,17 @@ class Queue(object):
     def enqueue(self, value):
         """Add value to the tail of the queue."""
         self._dblinkedlist.append(value)
+        self.head = self._dblinkedlist.head
+        self.tail = self._dblinkedlist.tail
+        self.length = self._dblinkedlist.length
 
     def dequeue(self):
         """Remove the first item in the queue and return value."""
         try:
+            self._dblinkedlist.pop()
+            self.head = self._dblinkedlist.head
+            self.tail = self._dblinkedlist.tail
+            self.length = self._dblinkedlist.length
             return self._dblinkedlist.pop()
         except ValueError:
             raise ValueError("Cannot dequeue from an empty queue")
