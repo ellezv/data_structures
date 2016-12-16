@@ -10,7 +10,7 @@ setup(
     author_email="maellevance@gmail.com, seras37@gmail.ocom",
     license="MIT",
     py_modules=[
-        'linked_list', 'stack', 'dll',
+        'linked_list', 'stack', 'dll', 'queue'
     ],
     package_dir={'': 'src'},
     install_requires=[],
