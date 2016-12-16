@@ -25,11 +25,11 @@ class Queue(object):
     def dequeue(self):
         """Remove the first item in the queue and return value."""
         try:
-            self._dblinkedlist.pop()
+            dequeued_value = self._dblinkedlist.pop()
             self.head = self._dblinkedlist.head
             self.tail = self._dblinkedlist.tail
             self.length = self._dblinkedlist.length
-            return self._dblinkedlist.pop()
+            return dequeued_value
         except ValueError:
             raise ValueError("Cannot dequeue from an empty queue")
 

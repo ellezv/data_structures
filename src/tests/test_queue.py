@@ -22,7 +22,7 @@ def test_init_queue():
     assert new_queue.tail is None
 
 
-def test_queue_with_value():
+def test_init_queue_with_value():
     """General test to initiate queue with value."""
     from queue import Queue
     new_queue = Queue(5)
@@ -62,3 +62,26 @@ def test_dequeue_sets_new_head(new_queue):
     """Test dequeue from a list with value will set a new head."""
     new_queue.dequeue()
     assert new_queue.head.value == 4
+
+
+def test_dequeue_return_value(new_queue):
+    """Test that return value of removed head."""
+    assert new_queue.dequeue() == 5
+
+
+def test_peek_from_list_with_one_value():
+    """Test peak from list with one value."""
+    from queue import Queue
+    new_queue = Queue(1)
+    assert new_queue.peek() is None
+
+
+def test_peek_from_list_returns_second_value(new_queue):
+    """Test that return value of second in list."""
+    assert new_queue.peek() == 4
+
+
+def test_peek_from_list_with_one_value(new_queue):
+    """Test that return value of second in list after dequeued list."""
+    new_queue.dequeue()
+    assert new_queue.peek() == 3
