@@ -85,3 +85,22 @@ def test_peek_from_list_with_one_value(new_queue):
     """Test that return value of second in list after dequeued list."""
     new_queue.dequeue()
     assert new_queue.peek() == 3
+
+
+def test_size_empty_list():
+    """Test that return size of empty list."""
+    from queue import Queue
+    new_queue = Queue()
+    assert new_queue.size() == 0
+
+
+def test_size_list_with_one_value():
+    """Test that return size of list with one value."""
+    from queue import Queue
+    new_queue = Queue(1)
+    assert new_queue.size() == 1
+
+
+def test_size_list_with_multi_value(new_queue):
+    """."""
+    assert new_queue.size() == 3
