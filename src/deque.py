@@ -1,8 +1,8 @@
 """An implementation of a Deque using Python."""
 
-import dll
+from dll import DbLinkedList
 
-class deque(object):
+class Deque(object):
 	"""Implementation of a deque data structure.
 
 	append(value) adds value to the end of the deque.
@@ -15,19 +15,19 @@ class deque(object):
 	def __init__(self, iterable=None):
 		"""Initializes a deque."""
 		self._dblinkedlist = DbLinkedList()
-		if iterable and hasattr(iterable, "__iter__"):
-            for item in iterable:
-                self.append(item)
-        elif iterable:
-            raise TypeError
+		# if iterable and hasattr(iterable, "__iter__"):
+  #           for item in iterable:
+  #               self.append(item)
+  #       elif iterable:
+  #           raise TypeError
 
 	def append(self, value):
 		""""""
-		self._dblinkedlist.append()
+		self._dblinkedlist.append(value)
 
 	def appendleft(self, value):
 		""""""
-		self._dblinkedlist.push()
+		self._dblinkedlist.push(value)
 
 	def pop(self):
 		""""""
