@@ -13,14 +13,11 @@ class Deque(object):
     peek() returns the tail value without removing it.
     """
 
-    def __init__(self, iterable=None):
+    def __init__(self, value=None):
         """Init a deque."""
         self._dblinkedlist = DbLinkedList()
-        if iterable and hasattr(iterable, "__iter__"):
-            for item in iterable:
-                self.append(item)
-        elif iterable:
-            raise TypeError
+        if value:
+            self.append(value)
 
     def append(self, value):
         """Add value to the end of the deque."""
