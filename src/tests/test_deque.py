@@ -61,17 +61,41 @@ def test_length_appendleft_one_value(init_deque):
 
 
 def test_end_pop_one_value(init_deque):
-    """"""
+    """Test pop sets a new tail."""
     init_deque.pop()
     assert init_deque._dblinkedlist.tail.value == 5
 
 
 def test_length_pop_one_value(init_deque):
-    """"""
+    """Test pop changes the length."""
     init_deque.pop()
     assert init_deque._dblinkedlist.length == 1
 
 
 def test_value_pop_one_value(init_deque):
-    """"""
+    """Test pop returns the correct value."""
     assert init_deque.pop() == 4
+
+
+def test_popleft_return_value(init_deque):
+    """Test popleft returns correct value."""
+    assert init_deque.popleft() == 5
+
+
+def test_size(init_deque):
+    """Test size returns expected value."""
+    assert init_deque.size() == 2
+
+
+def peek_none():
+    """Test peek on an empty deque returns none."""
+    from deque import Deque
+    deque = Deque()
+    assert deque.peek() is None
+
+
+def peek_left():
+    """Test peek left on an empty queue returns none."""
+    from deque import Deque
+    deque = Deque()
+    assert deque.peekleft() is None
