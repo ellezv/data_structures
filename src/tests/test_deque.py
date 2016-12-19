@@ -21,12 +21,12 @@ def test_init_deque_no_param_is_empty():
 
 def test_init_deque_with_iter_sets_head(new_deque):
     """Check head value is value expected."""
-    assert new_deque._dbLinkedList.head == 1
+    assert new_deque._dbLinkedList.head == 5
 
 
 def test_init_deque_with_iter_sets_tail(new_deque):
     """Check tail value is value expected."""
-    assert new_deque._dbLinkedList.tail == 5
+    assert new_deque._dbLinkedList.tail == 1
 
 
 def test_init_deque_with_iter_sets_length(new_deque):
