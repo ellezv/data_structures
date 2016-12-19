@@ -39,11 +39,13 @@ class Deque(object):
     def peek(self):
         """Return the value of the end of the deque without removing it."""
         if self._dblinkedlist.head is None:
-            return self._dblinkedlist
+            return self._dblinkedlist.head
         return self._dblinkedlist.tail.value
 
     def peekleft(self):
         """Return the value of the front of the deque without removing it."""
+        if self._dblinkedlist.head is None:
+            return self._dblinkedlist.head
         return self._dblinkedlist.head.value
 
     def size(self):
