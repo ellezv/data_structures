@@ -23,32 +23,31 @@ class Deque(object):
             raise TypeError
 
     def append(self, value):
-        """"""
+        """Add value to the end of the deque."""
         self._dblinkedlist.append(value)
 
     def appendleft(self, value):
-        """"""
+        """Add value to the front of the deque."""
         self._dblinkedlist.push(value)
 
     def pop(self):
-        """"""
-        popped_value = self.shift()
-        return popped_value
+        """Remove value from the end of the end of the deque."""
+        return self._dblinkedlist.shift()
 
-    # def popleft(self):
-    # 	""""""
-    # 	popped_value = self.pop()
-        # return popped_value
+    def popleft(self):
+        """Remove value from the front of the deque."""
+        return self._dblinkedlist.pop()
 
-    # def peek(self):
-    # 	""""""
-    # 	if self._dblinkedlist.head is None:
-    # 		return self._dblinkedlist
-    # 	return self._dblinkedlist.tail.value
+    def peek(self):
+        """Return the value of the end of the deque without removing it."""
+        if self._dblinkedlist.head is None:
+            return self._dblinkedlist
+        return self._dblinkedlist.tail.value
 
-    # def peekleft(self):
-    # 	""""""
-    # 	return self._dblinkedlist.head.value
+    def peekleft(self):
+        """Return the value of the front of the deque without removing it."""
+        return self._dblinkedlist.head.value
 
-    # size(self):
-    # 	""""""
+    def size(self):
+        """Return the length of the deque."""
+        return self._dblinkedlist.length
