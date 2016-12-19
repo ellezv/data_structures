@@ -8,9 +8,10 @@ class Deque(object):
 
     append(value) adds value to the end of the deque.
     appendleft(value) adds value to the front of the deque.
-    pop() removes value from the end of the deque.
-    popleft() removes a value from the front of the deque.
+    pop() removes and returns a value from the end of the deque.
+    popleft() removes and returns a value from the front of the deque.
     peek() returns the tail value without removing it.
+    size() returns the length of the deque.
     """
 
     def __init__(self, value=None):
