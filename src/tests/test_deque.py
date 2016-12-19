@@ -87,14 +87,14 @@ def test_size(init_deque):
     assert init_deque.size() == 2
 
 
-def peek_none():
+def test_peek_none():
     """Test peek on an empty deque returns none."""
     from deque import Deque
     deque = Deque()
     assert deque.peek() is None
 
 
-def peek_left():
+def test_peekleft_none():
     """Test peek left on an empty queue returns none."""
     from deque import Deque
     deque = Deque()
