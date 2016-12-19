@@ -19,9 +19,14 @@ This repo contains implementations of various Data Structures in Python (2 and 3
     - Module: queue.py
     - Test: test_queue.py
 
+## Deque:
+    - Module: deque.py
+    - Test: test_deque.py
+
 ## Authors:
     * Sera Smith
     * Maelle Vance
+    * Ben Shields
 
 ## Coverage:
 
