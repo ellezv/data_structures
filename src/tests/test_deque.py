@@ -99,3 +99,13 @@ def test_peekleft_none():
     from deque import Deque
     deque = Deque()
     assert deque.peekleft() is None
+
+
+def test_peek_deque(init_deque):
+    """Test peek on a deque returns expected value."""
+    assert init_deque.peek() == 4
+
+
+def test_peekleft_deque(init_deque):
+    """Test peekleft on a deque returns expected value."""
+    assert init_deque.peekleft() == 5
