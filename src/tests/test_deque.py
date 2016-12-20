@@ -60,6 +60,22 @@ def test_length_appendleft_one_value(init_deque):
     assert init_deque._dblinkedlist.length == 3
 
 
+def test_pop_from_empty_deque():
+    """Test pop on an empty deque raises expected error."""
+    from deque import Deque
+    d = Deque()
+    with pytest.raises(ValueError, message="Cannot pop from an empty Deque"):
+        d.pop()
+
+
+def test_popleft_from_empty_deque():
+    """Test popleft on an empty deque raises expected error."""
+    from deque import Deque
+    d = Deque()
+    with pytest.raises(ValueError, message="Cannot popleft from an empty Deque"):
+        d.popleft()
+
+
 def test_end_pop_one_value(init_deque):
     """Test pop sets a new tail."""
     init_deque.pop()

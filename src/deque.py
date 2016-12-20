@@ -30,10 +30,14 @@ class Deque(object):
 
     def pop(self):
         """Remove value from the end of the end of the deque."""
+        if self._dblinkedlist.head is None:
+            raise ValueError("Cannot pop from an empty Deque")
         return self._dblinkedlist.shift()
 
     def popleft(self):
         """Remove value from the front of the deque."""
+        if self._dblinkedlist.head is None:
+            raise ValueError("Cannot popleft from an empty Deque")
         return self._dblinkedlist.pop()
 
     def peek(self):
