@@ -50,7 +50,7 @@ src/tests/test_stack.py            26      0   100%
 TOTAL                             475     17    96%
                   
 ```
- ### Python 3.7.10
+### Python 2.7.10
 ```
 ---------- coverage: platform darwin, python 2.7.10-final-0 ----------
 Name                            Stmts   Miss  Cover   Missing
