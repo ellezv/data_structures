@@ -18,6 +18,13 @@ def test_init_binheap():
     assert new_binheap._container == [1]
 
 
+def test_binheap_init_multiple_unordered():
+    """Tests push on binary heap"""
+    from binheap import Binheap
+    new_binheap = Binheap([5, 4, 6, 3, 7, 2, 9])
+    assert new_binheap._container == [9, 6, 7, 3, 4, 2, 5]
+
+
 def test_binheap_push_single_value_container_head():
     """Tests push on binary heap"""
     from binheap import Binheap
