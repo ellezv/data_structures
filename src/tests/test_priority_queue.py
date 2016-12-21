@@ -19,3 +19,10 @@ def test_insert_wrong_value():
     q = Priority_Queue(5)
     with pytest.raises(ValueError, message='Must insert with tuple!'):
         q.insert()
+
+def test_insert_wrong_value():
+    """"""
+    q = Priority_Queue(('a', 1))
+    
+    with pytest.raises(ValueError, message='Must insert with tuple!'):
+        q.insert()
