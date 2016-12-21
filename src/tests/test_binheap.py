@@ -14,7 +14,7 @@ def test_init_empty():
 def test_init_binheap():
     """Tests initialization of binary heap"""
     from binheap import Binheap
-    new_binheap = Binheap(1)
+    new_binheap = Binheap([1])
     assert new_binheap._container == [1]
 
 

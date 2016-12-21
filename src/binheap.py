@@ -1,5 +1,4 @@
 """Implementation of a binary heap in Python."""
-import math
 
 
 class Binheap(object):
@@ -15,8 +14,14 @@ class Binheap(object):
     def __init__(self, value=None):
         """Initialize binary heap."""
         self._container = []
-        if value:
-            self.push(value)
+        # if value:
+        #     for item in value:
+        #         self.push(value)
+        if value and hasattr(value, "__iter__"):
+            for item in value:
+                self.push(item)
+        elif value:
+            raise TypeError('Initial value must be an iterable!')
 
     def push(self, value):
         """Push a value in our heapified list."""
@@ -28,9 +33,10 @@ class Binheap(object):
         """Pop a value from the top of the heap."""
         try:
             self._container[0], self._container[len(self._container) - 1] = self._container[len(self._container) - 1], self._container[0]
-            self._container.pop()
+            val = self._container.pop()
             if len(self._container) > 1:
                 self.organize_binheap()
+            return val
         except:
             raise IndexError('Cannot pop from an empty binary heap!')
 
@@ -40,12 +46,12 @@ class Binheap(object):
         Max heap: Parent nodes must be greater than child nodes.
 
         Notes:  Last index number is (container length -1).
-                Parent index is (container length - 2) / 2 floored.
+                Initial parent index is (container length - 2) / 2 floored.
         """
-        a = len(self._container) - 1
-        b = int(math.floor((len(self._container) - 2) / 2))
+        a = -1
+        b = int((len(self._container) - 2) / 2)
         while self._container[a] > self._container[b]:
             self._container[a], self._container[b] = self._container[b], self._container[a]
-            a, b = b, int(math.floor((b - 1) / 2))
+            a, b = b, int((b - 1) / 2)
             if self._container[a] is self._container[0]:
                 break
