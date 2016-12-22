@@ -15,7 +15,7 @@ class PriorityQueue(object):
         self._container.setdefault(priority, []).append(value)
 
     def pop(self):
-        """"""
+        """Remove and return the highest priority value from the queue."""
         try:
             highest_priority = min([priority for priority in self._container])
             highest_priority_value = self._container[highest_priority].pop(0)
@@ -26,7 +26,7 @@ class PriorityQueue(object):
             raise IndexError('Cannot pop from an empty priority queue!')
 
     def peek(self):
-        """"""
+        """Return the highest priority value from the queue without removing it."""
         try:
             highest_priority = min([priority for priority in self._container])
             return self._container[highest_priority][0]
