@@ -32,7 +32,6 @@ class Binheap(object):
     def pop(self):
         """Pop a value from the top of the heap."""
         try:
-            import pdb; pdb.set_trace()
             self._container[0], self._container[len(self._container) - 1] = self._container[len(self._container) - 1], self._container[0]
             val = self._container.pop()
             if len(self._container) > 1:
