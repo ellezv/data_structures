@@ -11,14 +11,14 @@ def new_pqueue():
 
 
 def test_insert(new_pqueue):
-    """Test insert tuple in a empty priority queue."""
-    new_pqueue.insert(('a', 1))
-    assert new_pqueue._container[1][0] == 'a'
+    """Test insert in a empty priority queue."""
+    new_pqueue.insert('a', -1)
+    assert new_pqueue._container[-1][0] == 'a'
 
 
 def test_insert_none(new_pqueue):
     """Test insert with no value in empty priority queue."""
-    with pytest.raises(AttributeError):
+    with pytest.raises(TypeError):
         new_pqueue.insert()
 
 
@@ -28,3 +28,5 @@ def test_insert_a_bunch(new_pqueue):
     new_pqueue.insert(2, -2)
     new_pqueue.insert(3, -3)
     new_pqueue._container = {-3: 3, -2: 2, 0: 1}
+
+
