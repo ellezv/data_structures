@@ -1,0 +1,1 @@
+"""Test for our simple graph module."""
