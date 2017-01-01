@@ -21,6 +21,14 @@ class Graph(object):
 
     g.adjacent(n1, n2): returns True if there is an edge connecting n1 and n2, False if not, raises an error if either of the supplied nodes are not in g
     """
+
     def __init__(self):
-        "initialize an empty graph."
+        """Initialize an empty graph."""
         self.nodes = {}
+
+    def add_node(self, node):
+        """Add a new node to the graph."""
+        if node in self.nodes.keys():
+            raise ValueError("Node already present in Graph.")
+        else:
+            self.nodes[node] = []
