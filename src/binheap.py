@@ -48,6 +48,8 @@ class Binheap(object):
         Notes:  Last index number is (container length -1).
                 Initial parent index is (container length - 2) / 2 floored.
         """
+        if self._container[0] != max(self._container):
+            
         a = -1
         b = int((len(self._container) - 2) / 2)
         while self._container[a] > self._container[b]:
