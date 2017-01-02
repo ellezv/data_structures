@@ -14,9 +14,6 @@ class Binheap(object):
     def __init__(self, value=None):
         """Initialize binary heap."""
         self._container = []
-        # if value:
-        #     for item in value:
-        #         self.push(value)
         if value and hasattr(value, "__iter__"):
             for item in value:
                 self.push(item)
