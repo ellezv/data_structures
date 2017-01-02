@@ -1,5 +1,5 @@
-"""An implementation of a simple graph in Python"""
-from itertools import chain
+"""An implementation of a simple graph in Python."""
+
 
 class Graph(object):
     """A graph containing nodes and single-directional edges between them.
@@ -27,10 +27,11 @@ class Graph(object):
         self._nodes = {}
 
     def nodes(self):
+        """Return a list of nodes in the graph."""
         return [key for key in self._nodes]
 
     def edges(self):
-        "return a list of tuples with key and its list of edges"
+        """Return a list of tuples with key and its list of edges"""
         tup_lst = [(key, self._nodes[key]) for key in self._nodes if len(self._nodes[key])]
         return list(tup_lst)
 
@@ -77,7 +78,7 @@ class Graph(object):
         raise ValueError("Node is not in graph.")
 
     def adjacent(self, n1, n2):
-        """Return True if there is an edge connecting n1 to n2, False if not."""
+        """Return True if there is an edge connecting n1 to n2 False if not."""
         if n1 in self._nodes.keys() and n2 in self._nodes[n1]:
             return True
         return False
