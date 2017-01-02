@@ -88,7 +88,7 @@ def test_edges_on_graph_without_edges(empty_graph):
 
 def test_edges_on_full_graph(full_graph):
     """The edges method returns a list of edges on graph with edges."""
-    assert sorted(full_graph.edges()) == [("a", ["b", "c"]), ("b", ["c"])]
+    assert sorted(full_graph.edges()) == [("a", "b"), ("a", "c"), ("b", "c")]
 
 
 def test_del_existing_node(graph_no_edge):
@@ -112,7 +112,7 @@ def test_del_edge_not_in_graph_raises_error(graph_no_edge):
 def test_del_edge(full_graph):
     """Del_edge deletes existing edge in graph."""
     full_graph.del_edge("b", "c")
-    assert full_graph.edges() == [("a", ["b", "c"])]
+    assert full_graph.edges() == [('a', 'b'), ('a', 'c')]
 
 
 def test_has_node_true(full_graph):
@@ -138,7 +138,8 @@ def test_neighbors_node_not_in_graph(graph_no_edge):
 
 def test_adjacent_node_not_in_graph(graph_no_edge):
     """Adjacent method will return False if there is no edge."""
-    assert not graph_no_edge.adjacent("z", "b")
+    with pytest.raises(KeyError):
+        graph_no_edge.adjacent("z", "b")
 
 
 def test_adjacent_edge_not_in_graph(graph_no_edge):
