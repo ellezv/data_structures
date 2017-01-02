@@ -34,12 +34,16 @@ class Graph(object):
 
     def nodes(self):
         """Return a list of nodes in the graph."""
-        return [key for key in self._nodes]
+        return list(self._nodes)
 
     def edges(self):
         """Return a list of tuples with key and its list of edges."""
-        tup_lst = [(key, self._nodes[key]) for key in self._nodes if self._nodes[key]]
-        return list(tup_lst)
+        tup_lst = []
+        if self.nodes:
+            for start in self._nodes:
+                for end in self._nodes[start]:
+                    tup_lst.append((start, end))
+        return tup_lst
 
     def add_node(self, node):
         """Add a new node to the graph."""
@@ -55,7 +59,7 @@ class Graph(object):
         if n2 not in self._nodes[n1]:
             self._nodes[n1].append(n2)
         else:
-            raise ValueError("This edge already exist.")
+            raise ValueError("This edge already exists.")
 
     def del_node(self, node):
         """Delete a given node from the graph."""
@@ -73,9 +77,7 @@ class Graph(object):
 
     def has_node(self, node):
         """Return true is node is in graph, false if not."""
-        if node in self._nodes.keys():
-            return True
-        return False
+        return node in self._nodes
 
     def neighbors(self, node):
         """Return list of edges of the node given."""
@@ -85,6 +87,8 @@ class Graph(object):
 
     def adjacent(self, n1, n2):
         """Return True if there is an edge connecting n1 to n2 False if not."""
-        if n1 in self._nodes.keys() and n2 in self._nodes[n1]:
+        if not self.has_node(n1) or not self.has_node(n2):
+            raise KeyError
+        if n2 in self._nodes[n1]:
             return True
         return False
