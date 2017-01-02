@@ -150,3 +150,13 @@ def test_adjacent_edge_not_in_graph(graph_no_edge):
 def test_adjacent_true(full_graph):
     """Adjacent method will return True if edge in graph."""
     assert full_graph.adjacent("a", "b")
+
+
+def test_depth_first_full_graph(full_graph):
+    full_graph.add_edge("b", "a")
+    assert full_graph.depth_first_traversal('a') == ['a', 'b', 'c']
+
+
+def test_depth_first_start_not_in_graph(full_graph):
+    with pytest.raises(KeyError):
+        full_graph.depth_first_traversal('hello')

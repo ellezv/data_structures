@@ -92,3 +92,45 @@ class Graph(object):
         if n2 in self._nodes[n1]:
             return True
         return False
+
+    def depth_first_traversal(self, start, prev=None):
+        """Return full depth-first traversal path of the graph."""
+        if start not in self._nodes.keys():
+            raise KeyError
+        if prev is None:
+            prev = []
+        if start in prev:
+            return []
+        path_list = [start]
+        nodes = self._nodes[start]
+        prev.append(start)
+        for node in nodes:
+            path_list.extend(self.depth_first_traversal(node, prev))
+        return path_list
+
+    def breadth_first_traversal(self, parent, path_list=None):
+        """Return a list containing the nodes of the graph in order of breadth-first traversal."""
+        if path_list is None:
+            path_list = []
+        if not isinstance(parent, list):
+            path_list.append(parent)
+            parent = [parent]
+        children = []
+        for item in parent:
+            for edge in self._nodes[item]:
+                if edge not in path_list:
+                    children.append(edge)
+        path_list.extend(children)
+        if len(children) == 0:
+            return path_list
+        return self.breadth_first_traversal(children, path_list)
+
+
+
+
+
+
+
+
+
+
