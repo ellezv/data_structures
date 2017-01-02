@@ -66,5 +66,50 @@ def test_add_edge_on_full_graph(full_graph):
 
 
 def test_add_existing_edge_raises_error(full_graph):
+    """Adding an existing edge raises expected error."""
     with pytest.raises(ValueError, message="This edge already exist."):
         full_graph.add_edge("a", "b")
+
+
+def test_nodes_empty_graph(empty_graph):
+    """The nodes method returns an empty list for an empty graph."""
+    assert empty_graph.nodes() == []
+
+
+def test_nodes_full_graph(full_graph):
+    """The nodes method returns list of nodes on graph with nodes."""
+    assert sorted(full_graph.nodes()) == ["a", "b", "c"]
+
+
+def test_edges_on_graph_without_edges(empty_graph):
+    """The edges method returns an empty list on an empty graph."""
+    assert empty_graph.edges() == []
+
+
+def test_edges_on_full_graph(full_graph):
+    """The edges method returns a list of edges on graph with edges."""
+    assert sorted(full_graph.edges()) == [("a", ["b", "c"]), ("b", ["c"])]
+
+
+def test_del_existing_node(graph_no_edge):
+    """Del_node delete the node."""
+    graph_no_edge.del_node("a")
+    assert sorted(graph_no_edge.nodes()) == ["b", "c"]
+
+
+def test_del_node_not_in_graph_raises_error(graph_no_edge):
+    """Del_node will raise error if node does not exist."""
+    with pytest.raises(ValueError, message="This node is not in the graph"):
+        graph_no_edge.del_node("I'm hungry")
+
+
+def test_del_edge_not_in_graph_raises_error(graph_no_edge):
+    """Del_edge will raise error if edge does not exist."""
+    with pytest.raises(ValueError, message="This edge does not exist."):
+        graph_no_edge.del_edge("a", "b")
+
+
+def test_del_edge(full_graph):
+    """Del_edge deletes existing edge in graph."""
+    full_graph.del_edge("b", "c")
+    assert full_graph.edges() == [("a", ["b", "c"])]

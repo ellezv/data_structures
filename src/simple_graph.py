@@ -1,5 +1,5 @@
 """An implementation of a simple graph in Python"""
-
+from itertools import chain
 
 class Graph(object):
     """A graph containing nodes and single-directional edges between them.
@@ -26,6 +26,14 @@ class Graph(object):
         """Initialize an empty graph."""
         self._nodes = {}
 
+    def nodes(self):
+        return [key for key in self._nodes]
+
+    def edges(self):
+        "return a list of tuples with key and its list of edges"
+        tup_lst = [(key, self._nodes[key]) for key in self._nodes if len(self._nodes[key])]
+        return list(tup_lst)
+
     def add_node(self, node):
         """Add a new node to the graph."""
         if node in self._nodes.keys():
@@ -34,10 +42,24 @@ class Graph(object):
             self._nodes[node] = []
 
     def add_edge(self, n1, n2):
-        """Add a single-directional edge connecting n1 to n2"""
+        """Add a single-directional edge connecting n1 to n2."""
         self._nodes.setdefault(n1, [])
         self._nodes.setdefault(n2, [])
         if n2 not in self._nodes[n1]:
             self._nodes[n1].append(n2)
         else:
             raise ValueError("This edge already exist.")
+
+    def del_node(self, node):
+        """Delete a given node from the graph."""
+        if node in self._nodes.keys():
+            del self._nodes[node]
+        else:
+            raise ValueError("This node is not in the graph")
+
+    def del_edge(self, n1, n2):
+        """Delete a given edge from the graph."""
+        if n1 in self._nodes.keys() and n2 in self._nodes[n1]:
+            self._nodes[n1].remove(n2)
+        else:
+            raise ValueError("This edge does not exist.")
