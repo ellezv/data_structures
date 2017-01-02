@@ -63,3 +63,21 @@ class Graph(object):
             self._nodes[n1].remove(n2)
         else:
             raise ValueError("This edge does not exist.")
+
+    def has_node(self, node):
+        """Return true is node is in graph, false if not."""
+        if node in self._nodes.keys():
+            return True
+        return False
+
+    def neighbors(self, node):
+        """Return list of edges of the node given."""
+        if node in self._nodes.keys():
+            return self._nodes[node]
+        raise ValueError("Node is not in graph.")
+
+    def adjacent(self, n1, n2):
+        """Return True if there is an edge connecting n1 to n2, False if not."""
+        if n1 in self._nodes.keys() and n2 in self._nodes[n1]:
+            return True
+        return False

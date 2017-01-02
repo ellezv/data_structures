@@ -113,3 +113,39 @@ def test_del_edge(full_graph):
     """Del_edge deletes existing edge in graph."""
     full_graph.del_edge("b", "c")
     assert full_graph.edges() == [("a", ["b", "c"])]
+
+
+def test_has_node_true(full_graph):
+    """Has_node returns true if node is in graph."""
+    assert full_graph.has_node("a")
+
+
+def test_has_node_false(full_graph):
+    """Has_node returns false if not is not in graph."""
+    assert not full_graph.has_node("z")
+
+
+def test_neighbors_full_graph(full_graph):
+    """The neighbors method will return a list of edges of a given node."""
+    assert sorted(full_graph.neighbors("a")) == ["b", "c"]
+
+
+def test_neighbors_node_not_in_graph(graph_no_edge):
+    """The neighbors method will raise error if node not in graph."""
+    with pytest.raises(ValueError, message="Node is not in Graph."):
+        graph_no_edge.neighbors("z")
+
+
+def test_adjacent_node_not_in_graph(graph_no_edge):
+    """Adjacent method will return False if there is no edge."""
+    assert not graph_no_edge.adjacent("z", "b")
+
+
+def test_adjacent_edge_not_in_graph(graph_no_edge):
+    """Adjacent will return False if edge is not in graph."""
+    assert not graph_no_edge.adjacent("b", "a")
+
+
+def test_adjacent_true(full_graph):
+    """Adjacent method will return True if edge in graph."""
+    assert full_graph.adjacent("a", "b")
