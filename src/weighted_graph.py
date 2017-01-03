@@ -56,24 +56,19 @@ class Graph(object):
         """Add a single-directional edge connecting n1 to n2."""
         self._nodes.setdefault(n1, [])
         self._nodes.setdefault(n2, [])
-        is_swapped = False
         for each in self._nodes[n1]:
-            print(n2)
-            if n2 in self._nodes[n1][each]:
-                self._nodes[n1][each][1] = weight
-                is_swapped = True
+            if n2 in each:
+                self._nodes[n1].remove(each)
                 break
-        if is_swapped is False:
-            self._nodes[n1].append([n2, weight])
-        # if n2 not in self._nodes[n1]:
-        #     self._nodes[n1].append((n2, weight))
-        else:
-            raise ValueError("This edge already exists.")
+        self._nodes[n1].append([n2, weight])
 
     def del_node(self, node):
         """Delete a given node from the graph."""
         if node in self._nodes.keys():
             del self._nodes[node]
+            for each in self.edges():
+                if each[1][0] == node:
+                    self.del_edge(each[0], each[1])
         else:
             raise ValueError("This node is not in the graph")
 
