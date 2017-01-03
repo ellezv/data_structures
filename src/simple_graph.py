@@ -52,12 +52,20 @@ class Graph(object):
         else:
             self._nodes[node] = []
 
-    def add_edge(self, n1, n2):
+    def add_edge(self, n1, n2, weight=1):
         """Add a single-directional edge connecting n1 to n2."""
         self._nodes.setdefault(n1, [])
         self._nodes.setdefault(n2, [])
-        if n2 not in self._nodes[n1]:
-            self._nodes[n1].append(n2)
+        is_swapped = False
+        for each in self._nodes[n1]:
+            if n2 in self._nodes[n1][each]:
+                self._nodes[n1][each][1] = weight
+                is_swapped = True
+                break
+        if is_swapped is False:
+            self._nodes[n1].append((n2, weight))
+        # if n2 not in self._nodes[n1]:
+        #     self._nodes[n1].append((n2, weight))
         else:
             raise ValueError("This edge already exists.")
 
