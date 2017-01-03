@@ -126,7 +126,7 @@ class Graph(object):
         return self.breadth_first_traversal(children, path_list)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": # pragma: no cover
     import timeit
 
     def fill_graph(graph):

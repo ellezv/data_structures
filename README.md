@@ -53,7 +53,7 @@ src/dll.py                            56      2    96%   72, 82
 src/linked_list.py                    66     15    77%   8-11, 34, 66-74, 93, 97
 src/priority_queue.py                 22     14    36%   14, 19-26, 30-34
 src/queue.py                          30      0   100%
-src/simple_graph.py                   39      0   100%
+src/simple_graph.py                   70      0   100%
 src/stack.py                          13      0   100%
 src/tests/__init__.py                  0      0   100%
 src/tests/test_binheap.py             58      0   100%
@@ -62,11 +62,10 @@ src/tests/test_dll.py                 70      0   100%
 src/tests/test_linked_list.py         78      0   100%
 src/tests/test_priority_queue.py      16      0   100%
 src/tests/test_queue.py               58      0   100%
-src/tests/test_simple_graph.py        74      0   100%
+src/tests/test_simple_graph.py       125      0   100%
 src/tests/test_stack.py               26      0   100%
 ----------------------------------------------------------------
-TOTAL                                727     35    95%
-
+TOTAL                                809     35    96%
                   
 ```
 ### Python 2.7.10
@@ -80,7 +79,7 @@ src/dll.py                            56      2    96%   72, 82
 src/linked_list.py                    66     15    77%   8-11, 34, 66-74, 93, 97
 src/priority_queue.py                 22     14    36%   14, 19-26, 30-34
 src/queue.py                          30      0   100%
-src/simple_graph.py                   39      0   100%
+src/simple_graph.py                   70      0   100%
 src/stack.py                          13      0   100%
 src/tests/__init__.py                  0      0   100%
 src/tests/test_binheap.py             58      0   100%
@@ -89,10 +88,9 @@ src/tests/test_dll.py                 70      0   100%
 src/tests/test_linked_list.py         78      0   100%
 src/tests/test_priority_queue.py      16      0   100%
 src/tests/test_queue.py               58      0   100%
-src/tests/test_simple_graph.py        74      0   100%
+src/tests/test_simple_graph.py       125      0   100%
 src/tests/test_stack.py               26      0   100%
 ----------------------------------------------------------------
-TOTAL                                727     35    95%
-
+TOTAL                                809     35    96%
 
 ```
