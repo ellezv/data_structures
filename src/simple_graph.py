@@ -126,11 +126,23 @@ class Graph(object):
         return self.breadth_first_traversal(children, path_list)
 
 
+if __name__ == "__main__":
+    import timeit
 
 
+    def fill_graph(graph):
+        for i in range(100):
+            graph.add_edge(i, i + 1)
 
+    def fill_and_depth_trav():
+        g = Graph()
+        fill_graph(g)
+        g.depth_first_traversal(1)
 
+    def fill_and_breadth_trav():
+        g = Graph()
+        fill_graph(g)
+        g.breadth_first_traversal(1)
 
-
-
-
+    print(timeit.repeat(stmt="fill_and_depth_trav()", setup="from __main__ import fill_and_depth_trav", number=1000, repeat=3))
+    print(timeit.repeat(stmt="fill_and_breadth_trav()", setup="from __main__ import fill_and_breadth_trav", number=1000, repeat=3))
