@@ -129,7 +129,6 @@ class Graph(object):
 if __name__ == "__main__":
     import timeit
 
-
     def fill_graph(graph):
         for i in range(100):
             graph.add_edge(i, i + 1)
@@ -144,5 +143,13 @@ if __name__ == "__main__":
         fill_graph(g)
         g.breadth_first_traversal(1)
 
-    print(timeit.repeat(stmt="fill_and_depth_trav()", setup="from __main__ import fill_and_depth_trav", number=1000, repeat=3))
-    print(timeit.repeat(stmt="fill_and_breadth_trav()", setup="from __main__ import fill_and_breadth_trav", number=1000, repeat=3))
+    depth_trav_timed = timeit.repeat(stmt="fill_and_depth_trav()", setup="from __main__ import fill_and_depth_trav", number=1000, repeat=3)
+    breadth_trav_timed = timeit.repeat(stmt="fill_and_breadth_trav()", setup="from __main__ import fill_and_breadth_trav", number=1000, repeat=3)
+    average_depth_timed = float(sum(depth_trav_timed) / len(depth_trav_timed))
+    average_breadth_timed = float(sum(breadth_trav_timed) / len(breadth_trav_timed))
+
+    print("Depth traversal times:", depth_trav_timed)
+    print("average:", average_depth_timed)
+    print("Breadth traversal times:", breadth_trav_timed)
+    print("average:", average_breadth_timed)
+    print("This print statement was brought to you by Ben and Maelle. You're welcome.")
