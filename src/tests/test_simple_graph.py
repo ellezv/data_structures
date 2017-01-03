@@ -160,3 +160,71 @@ def test_depth_first_full_graph(full_graph):
 def test_depth_first_start_not_in_graph(full_graph):
     with pytest.raises(KeyError):
         full_graph.depth_first_traversal('hello')
+
+
+def test_breadth_first_full_graph(full_graph):
+    full_graph.add_edge("b", "a")
+    assert full_graph.breadth_first_traversal('a') == ['a', 'b', 'c']
+
+
+def test_breadth_first_start_not_in_graph(full_graph):
+    with pytest.raises(KeyError):
+        full_graph.breadth_first_traversal('hello')
+
+
+def test_depth_first_full_graph_plus(full_graph):
+    full_graph.add_edge("b", "d")
+    assert full_graph.depth_first_traversal('a') == ['a', 'b', 'c', 'd']
+
+
+def test_breadth_first_full_graph_plus(full_graph):
+    full_graph.add_edge("b", "d")
+    assert full_graph.breadth_first_traversal('a') == ['a', 'b', 'c', 'd']
+
+
+def test_depth_first1(graph_no_edge):
+    graph_no_edge.add_edge('a', 'b')
+    graph_no_edge.add_edge('a', 'c')
+    graph_no_edge.add_edge('b', 'd')
+    assert graph_no_edge.depth_first_traversal('a') == ['a', 'b', 'd', 'c']
+
+
+def test_breadth_first1(graph_no_edge):
+    graph_no_edge.add_edge('a', 'b')
+    graph_no_edge.add_edge('a', 'c')
+    graph_no_edge.add_edge('b', 'd')
+    assert graph_no_edge.breadth_first_traversal('a') == ['a', 'b', 'c', 'd']
+
+
+def test_depth_first2(graph_no_edge):
+    graph_no_edge.add_edge('a', 'b')
+    graph_no_edge.add_edge('a', 'c')
+    graph_no_edge.add_edge('b', 'd')
+    assert graph_no_edge.depth_first_traversal('b') == ['b', 'd']
+
+
+def test_breadth_first2(graph_no_edge):
+    graph_no_edge.add_edge('a', 'b')
+    graph_no_edge.add_edge('a', 'c')
+    graph_no_edge.add_edge('b', 'd')
+    assert graph_no_edge.breadth_first_traversal('b') == ['b', 'd']
+
+
+def test_depth_first3(graph_no_edge):
+    graph_no_edge.add_edge('a', 'b')
+    assert graph_no_edge.depth_first_traversal('a') == ['a', 'b']
+
+
+def test_breadth_first3(graph_no_edge):
+    graph_no_edge.add_edge('a', 'b')
+    assert graph_no_edge.depth_first_traversal('a') == ['a', 'b']
+
+
+def test_depth_first4(graph_no_edge):
+    graph_no_edge.add_edge('a', 'b')
+    assert graph_no_edge.depth_first_traversal('b') == ['b']
+
+
+def test_breadth_first4(graph_no_edge):
+    graph_no_edge.add_edge('a', 'b')
+    assert graph_no_edge.depth_first_traversal('b') == ['b']
