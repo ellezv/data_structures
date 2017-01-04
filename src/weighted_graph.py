@@ -86,10 +86,7 @@ class Graph(object):
     def neighbors(self, node):
         """Return list of edges of the node given."""
         if node in self._nodes.keys():
-            return_me = []
-            for each in self._nodes[node]:
-                return_me.append(each[0])
-            return return_me
+            return self._nodes[node]
         raise ValueError("Node is not in graph.")
 
     def adjacent(self, n1, n2):
