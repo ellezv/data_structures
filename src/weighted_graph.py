@@ -60,7 +60,7 @@ class Graph(object):
             if n2 in each:
                 self._nodes[n1].remove(each)
                 break
-        self._nodes[n1].append([n2, weight])
+        self._nodes[n1].append((n2, weight))
 
     def del_node(self, node):
         """Delete a given node from the graph."""
@@ -106,7 +106,9 @@ class Graph(object):
         if start in prev:
             return []
         path_list = [start]
-        nodes = self._nodes[start]
+        nodes = []
+        for each in self._nodes[start]:
+            nodes.append(each[0])
         prev.append(start)
         for node in nodes:
             path_list.extend(self.depth_first_traversal(node, prev))
@@ -121,9 +123,10 @@ class Graph(object):
             parent = [parent]
         children = []
         for item in parent:
-            for edge in self._nodes[item]:
-                if edge not in path_list:
-                    children.append(edge)
+            if self._nodes[item]:
+                for edge in self._nodes[item]:
+                    if edge[0] not in path_list:
+                        children.append(edge[0])
         path_list.extend(children)
         if len(children) == 0:
             return path_list
