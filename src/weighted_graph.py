@@ -133,30 +133,30 @@ class Graph(object):
         return self.breadth_first_traversal(children, path_list)
 
 
-# if __name__ == "__main__": # pragma: no cover
-#     import timeit
+if __name__ == "__main__": # pragma: no cover
+    import timeit
 
-#     def fill_graph(graph):
-#         for i in range(100):
-#             graph.add_edge(i, i + 1)
+    def fill_graph(graph):
+        for i in range(100):
+            graph.add_edge(i, i + 1)
 
-#     def fill_and_depth_trav():
-#         g = Graph()
-#         fill_graph(g)
-#         g.depth_first_traversal(1)
+    def fill_and_depth_trav():
+        g = Graph()
+        fill_graph(g)
+        g.depth_first_traversal(1)
 
-#     def fill_and_breadth_trav():
-#         g = Graph()
-#         fill_graph(g)
-#         g.breadth_first_traversal(1)
+    def fill_and_breadth_trav():
+        g = Graph()
+        fill_graph(g)
+        g.breadth_first_traversal(1)
 
-#     depth_trav_timed = timeit.repeat(stmt="fill_and_depth_trav()", setup="from __main__ import fill_and_depth_trav", number=1000, repeat=3)
-#     breadth_trav_timed = timeit.repeat(stmt="fill_and_breadth_trav()", setup="from __main__ import fill_and_breadth_trav", number=1000, repeat=3)
-#     average_depth_timed = float(sum(depth_trav_timed) / len(depth_trav_timed))
-#     average_breadth_timed = float(sum(breadth_trav_timed) / len(breadth_trav_timed))
+    depth_trav_timed = timeit.repeat(stmt="fill_and_depth_trav()", setup="from __main__ import fill_and_depth_trav", number=1000, repeat=3)
+    breadth_trav_timed = timeit.repeat(stmt="fill_and_breadth_trav()", setup="from __main__ import fill_and_breadth_trav", number=1000, repeat=3)
+    average_depth_timed = float(sum(depth_trav_timed) / len(depth_trav_timed))
+    average_breadth_timed = float(sum(breadth_trav_timed) / len(breadth_trav_timed))
 
-#     print("Depth traversal times:", depth_trav_timed)
-#     print("average:", average_depth_timed)
-#     print("Breadth traversal times:", breadth_trav_timed)
-#     print("average:", average_breadth_timed)
-#     print("This print statement was brought to you by Ben and Maelle. You're welcome.")
+    print("Depth traversal times:", depth_trav_timed)
+    print("average:", average_depth_timed)
+    print("Breadth traversal times:", breadth_trav_timed)
+    print("average:", average_breadth_timed)
+    print("This print statement was brought to you by Ben and Maelle. You're welcome.")
