@@ -175,7 +175,16 @@ class Graph(object):
                     (distances_and_paths[item[0]])[1] = current_node_path
                 print(distances_and_paths)
             if current_node == dest_node:
-                return str(shortest_distance) + ' ' + str(shortest_path)
+                return_node = None
+                for key, value in distances_and_paths.items():
+                    if return_node is None:
+                        return_node = key
+                        continue
+                    elif (distances_and_paths[key])[0]:
+                        if (distances_and_paths[return_node])[0] < (distances_and_paths[key])[0]:
+                            return_node = key
+                return str((distances_and_paths[dest_node])[0]) + ' ' + str((distances_and_paths[dest_node])[1])
+                # return str(shortest_path) + ' ' + str(shortest_distance)
             unvisited.remove(current_node)
             next_node = None
             for key, value in distances_and_paths.items():
