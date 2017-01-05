@@ -141,9 +141,7 @@ class Graph(object):
 
         if dest_node not in unvisited:
             raise ValueError("No path from start node to destination node.")
-        dest_visited = False
-        shortest_distance = None
-        shortest_path = []
+
         distances_and_paths = {i: [None, [None]] for i in unvisited}
         distances_and_paths[start_node] = [0, [start_node]]
         current_node = start_node
@@ -151,27 +149,27 @@ class Graph(object):
         while True:
             for item in self.neighbors(current_node):
                 study_node = item[0]
-                current_node_weight = (distances_and_paths[current_node])[0]
-                potential_weight = item[1] + current_node_weight
-                original_weight = (distances_and_paths[study_node])[0]
+                current_node_distance = (distances_and_paths[current_node])[0]
+                potential_distance = item[1] + current_node_distance
+                original_distance = (distances_and_paths[study_node])[0]
 
                 if study_node not in unvisited:
                     continue
-                elif original_weight is None:
+                elif original_distance is None:
                     current_node_path = (distances_and_paths[current_node])[1][:]
 
                     current_node_path.append(item[0])
 
-                    (distances_and_paths[item[0]])[0] = item[1] + current_node_weight
+                    (distances_and_paths[item[0]])[0] = item[1] + current_node_distance
                     (distances_and_paths[item[0]])[1] = current_node_path
 
                     continue
-                elif potential_weight < original_weight:
+                elif potential_distance < original_distance:
                     current_node_path = (distances_and_paths[current_node])[1][:]
 
                     current_node_path.append(item[0])
 
-                    (distances_and_paths[item[0]])[0] = item[1] + current_node_weight
+                    (distances_and_paths[item[0]])[0] = item[1] + current_node_distance
                     (distances_and_paths[item[0]])[1] = current_node_path
 
             if current_node == dest_node:
@@ -189,7 +187,21 @@ class Graph(object):
                         if (distances_and_paths[key])[0] < (distances_and_paths[next_node])[0]:
                             next_node = key
 
-            current_node = next_node
+            find_next_node()
+
+            def find_next_node():
+                """Find the next node whose neighbors will be studied."""
+                next_node = None
+                for key, value in distances_and_paths.items():
+                    if key in unvisited:
+                        if next_node is None:
+                            next_node = key
+                            continue
+                        elif (distances_and_paths[key])[0]:
+                            if (distances_and_paths[key])[0] < (distances_and_paths[next_node])[0]:
+                                next_node = key
+                current_node = next_node
+
 
 
 
