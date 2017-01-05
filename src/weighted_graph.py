@@ -133,6 +133,36 @@ class Graph(object):
         return self.breadth_first_traversal(children, path_list)
 
 
+    def djikstras_shortest_path(self, start_node, dest_node):
+        """Return the minimum distance between a start node
+        and a destination node, and the path of minimum distance
+        between those nodes."""
+        unvisited = self.depth_first_traversal(start_node)
+        if dest_node not in unvisited:
+            raise ValueError("No path from start node to destination node.")
+        dest_visited = False
+        shortest_distance = None
+        shortest_path = []
+        distances_and_paths = {i: None for i in unvisited}
+        distances_and_paths[start_node] = [0, [start_node]]
+        current_node = start_node
+        print(distances_and_paths)
+        for item in self.neighbors(current_node):
+            # previous_weight = distances_and_paths[current_node][0]
+            print(distances_and_paths[current_node])
+            # print(distances_and_paths[current_node][0])
+            # print(previous_weight)
+            # distances_and_paths[item[0][0]] = item[1] + previous_weight
+            print(distances_and_paths)
+            # previous_weight = distances_and_paths[current_node][0]
+            # print('prevw ' + str(distances_and_paths[current_node][0]))
+
+        # while(True):
+        #     for each in self.neighbors(current_node):
+        #         previous_weight = 
+
+
+
 if __name__ == "__main__": # pragma: no cover
     import timeit
 
