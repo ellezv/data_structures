@@ -155,9 +155,10 @@ class Graph(object):
                 current_node_weight = (distances_and_paths[current_node])[0]
                 potential_weight = item[1] + current_node_weight
                 original_weight = (distances_and_paths[study_node])[0]
+                print('original weight ' + str(original_weight))
                 if study_node not in unvisited:
                     continue
-                elif not original_weight:
+                elif original_weight is None:
                     current_node_path = (distances_and_paths[current_node])[1][:]
                     print(current_node_path)
                     current_node_path.append(item[0])
@@ -174,15 +175,12 @@ class Graph(object):
                     (distances_and_paths[item[0]])[0] = item[1] + current_node_weight
                     (distances_and_paths[item[0]])[1] = current_node_path
                 print(distances_and_paths)
+                print('current_node ' + str(current_node))
+                print('dest_node ' + str(dest_node))
+            print('current_node ' + str(current_node))
+            print('dest_node ' + str(dest_node))
             if current_node == dest_node:
-                return_node = None
-                for key, value in distances_and_paths.items():
-                    if return_node is None:
-                        return_node = key
-                        continue
-                    elif (distances_and_paths[key])[0]:
-                        if (distances_and_paths[return_node])[0] < (distances_and_paths[key])[0]:
-                            return_node = key
+                print('final dist path: ' + str(distances_and_paths))
                 return str((distances_and_paths[dest_node])[0]) + ' ' + str((distances_and_paths[dest_node])[1])
                 # return str(shortest_path) + ' ' + str(shortest_distance)
             unvisited.remove(current_node)
@@ -193,8 +191,9 @@ class Graph(object):
                         next_node = key
                         continue
                     elif (distances_and_paths[key])[0]:
-                        if (distances_and_paths[next_node])[0] < (distances_and_paths[key])[0]:
+                        if (distances_and_paths[key])[0] < (distances_and_paths[next_node])[0]:
                             next_node = key
+            print('next_node ' + str(next_node))
             current_node = next_node
             # print(unvisited)
             # unvisited.remove(current_node)
