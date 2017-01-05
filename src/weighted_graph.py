@@ -146,21 +146,26 @@ class Graph(object):
         distances_and_paths = {i: None for i in unvisited}
         distances_and_paths[start_node] = [0, [start_node]]
         current_node = start_node
-        print(distances_and_paths)
+        while len(unvisited)
         for item in self.neighbors(current_node):
-            # previous_weight = distances_and_paths[current_node][0]
+            previous_weight = distances_and_paths[current_node][0]
             print(distances_and_paths[current_node])
             # print(distances_and_paths[current_node][0])
             # print(previous_weight)
-            # distances_and_paths[item[0][0]] = item[1] + previous_weight
+            distances_and_paths[item[0]][0] += previous_weight
             print(distances_and_paths)
             # previous_weight = distances_and_paths[current_node][0]
             # print('prevw ' + str(distances_and_paths[current_node][0]))
+            if
+            distances_and_paths[item[0]][1].extend(the list?)
+        unvisited.pop(current_node)
+        current_node = "call the helper function to find the min in distances_and_paths"
 
         # while(True):
         #     for each in self.neighbors(current_node):
         #         previous_weight = 
 
+            def find_the_min():  ## that's the helper function.
 
 
 if __name__ == "__main__": # pragma: no cover
