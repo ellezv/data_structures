@@ -149,19 +149,46 @@ class Graph(object):
         current_node = start_node
         print(distances_and_paths)
         # while len(unvisited)
-        for item in self.neighbors(current_node):
-            if item[0] not in unvisited:
-                continue
-
-            previous_weight = (distances_and_paths[current_node])[0]
-            next_path = (distances_and_paths[current_node])[1][:]
-            print(next_path)
-            next_path.append(item[0])
-            print(next_path)
-            (distances_and_paths[item[0]])[0] = item[1] + previous_weight
-            (distances_and_paths[item[0]])[1] = next_path
-
-            print(distances_and_paths)
+        while True:
+            for item in self.neighbors(current_node):
+                study_node = item[0]
+                current_node_weight = (distances_and_paths[current_node])[0]
+                potential_weight = item[1] + current_node_weight
+                original_weight = (distances_and_paths[study_node])[0]
+                if study_node not in unvisited:
+                    continue
+                elif not original_weight:
+                    current_node_path = (distances_and_paths[current_node])[1][:]
+                    print(current_node_path)
+                    current_node_path.append(item[0])
+                    print(current_node_path)
+                    (distances_and_paths[item[0]])[0] = item[1] + current_node_weight
+                    (distances_and_paths[item[0]])[1] = current_node_path
+                    print(distances_and_paths)
+                    continue
+                elif potential_weight < original_weight:
+                    current_node_path = (distances_and_paths[current_node])[1][:]
+                    print(current_node_path)
+                    current_node_path.append(item[0])
+                    print(current_node_path)
+                    (distances_and_paths[item[0]])[0] = item[1] + current_node_weight
+                    (distances_and_paths[item[0]])[1] = current_node_path
+                print(distances_and_paths)
+            if current_node == dest_node:
+                return str(shortest_distance) + ' ' + str(shortest_path)
+            unvisited.remove(current_node)
+            next_node = None
+            for key, value in distances_and_paths.items():
+                if key in unvisited:
+                    if next_node is None:
+                        next_node = key
+                        continue
+                    elif (distances_and_paths[key])[0]:
+                        if (distances_and_paths[next_node])[0] < (distances_and_paths[key])[0]:
+                            next_node = key
+            current_node = next_node
+            # print(unvisited)
+            # unvisited.remove(current_node)
         #     if
         #     distances_and_paths[item[0]][1].extend(the list?)
         # unvisited.pop(current_node)
@@ -174,30 +201,30 @@ class Graph(object):
         # def find_the_min():  ## that's the helper function.
 
 
-if __name__ == "__main__": # pragma: no cover
-    import timeit
+# if __name__ == "__main__": # pragma: no cover
+#     import timeit
 
-    def fill_graph(graph):
-        for i in range(100):
-            graph.add_edge(i, i + 1)
+#     def fill_graph(graph):
+#         for i in range(100):
+#             graph.add_edge(i, i + 1)
 
-    def fill_and_depth_trav():
-        g = Graph()
-        fill_graph(g)
-        g.depth_first_traversal(1)
+#     def fill_and_depth_trav():
+#         g = Graph()
+#         fill_graph(g)
+#         g.depth_first_traversal(1)
 
-    def fill_and_breadth_trav():
-        g = Graph()
-        fill_graph(g)
-        g.breadth_first_traversal(1)
+#     def fill_and_breadth_trav():
+#         g = Graph()
+#         fill_graph(g)
+#         g.breadth_first_traversal(1)
 
-    depth_trav_timed = timeit.repeat(stmt="fill_and_depth_trav()", setup="from __main__ import fill_and_depth_trav", number=1000, repeat=3)
-    breadth_trav_timed = timeit.repeat(stmt="fill_and_breadth_trav()", setup="from __main__ import fill_and_breadth_trav", number=1000, repeat=3)
-    average_depth_timed = float(sum(depth_trav_timed) / len(depth_trav_timed))
-    average_breadth_timed = float(sum(breadth_trav_timed) / len(breadth_trav_timed))
+#     depth_trav_timed = timeit.repeat(stmt="fill_and_depth_trav()", setup="from __main__ import fill_and_depth_trav", number=1000, repeat=3)
+#     breadth_trav_timed = timeit.repeat(stmt="fill_and_breadth_trav()", setup="from __main__ import fill_and_breadth_trav", number=1000, repeat=3)
+#     average_depth_timed = float(sum(depth_trav_timed) / len(depth_trav_timed))
+#     average_breadth_timed = float(sum(breadth_trav_timed) / len(breadth_trav_timed))
 
-    print("Depth traversal times:", depth_trav_timed)
-    print("average:", average_depth_timed)
-    print("Breadth traversal times:", breadth_trav_timed)
-    print("average:", average_breadth_timed)
-    print("This print statement was brought to you by Ben and Maelle. You're welcome.")
+#     print("Depth traversal times:", depth_trav_timed)
+#     print("average:", average_depth_timed)
+#     print("Breadth traversal times:", breadth_trav_timed)
+#     print("average:", average_breadth_timed)
+#     print("This print statement was brought to you by Ben and Maelle. You're welcome.")
