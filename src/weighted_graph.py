@@ -187,20 +187,22 @@ class Graph(object):
                         if (distances_and_paths[key])[0] < (distances_and_paths[next_node])[0]:
                             next_node = key
 
-            find_next_node()
+            current_node = next_node
 
-            def find_next_node():
-                """Find the next node whose neighbors will be studied."""
-                next_node = None
-                for key, value in distances_and_paths.items():
-                    if key in unvisited:
-                        if next_node is None:
-                            next_node = key
-                            continue
-                        elif (distances_and_paths[key])[0]:
-                            if (distances_and_paths[key])[0] < (distances_and_paths[next_node])[0]:
-                                next_node = key
-                current_node = next_node
+            # find_next_node()
+
+            # def find_next_node():
+            #     """Find the next node whose neighbors will be studied."""
+            #     next_node = None
+            #     for key, value in distances_and_paths.items():
+            #         if key in unvisited:
+            #             if next_node is None:
+            #                 next_node = key
+            #                 continue
+            #             elif (distances_and_paths[key])[0]:
+            #                 if (distances_and_paths[key])[0] < (distances_and_paths[next_node])[0]:
+            #                     next_node = key
+            #     current_node = next_node
 
 
 
