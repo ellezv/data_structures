@@ -138,7 +138,7 @@ class Graph(object):
         and a destination node, and the path of minimum distance
         between those nodes."""
         unvisited = self.depth_first_traversal(start_node)
-        print(unvisited)
+
         if dest_node not in unvisited:
             raise ValueError("No path from start node to destination node.")
         dest_visited = False
@@ -147,42 +147,37 @@ class Graph(object):
         distances_and_paths = {i: [None, [None]] for i in unvisited}
         distances_and_paths[start_node] = [0, [start_node]]
         current_node = start_node
-        print(distances_and_paths)
-        # while len(unvisited)
+
         while True:
             for item in self.neighbors(current_node):
                 study_node = item[0]
                 current_node_weight = (distances_and_paths[current_node])[0]
                 potential_weight = item[1] + current_node_weight
                 original_weight = (distances_and_paths[study_node])[0]
-                print('original weight ' + str(original_weight))
+
                 if study_node not in unvisited:
                     continue
                 elif original_weight is None:
                     current_node_path = (distances_and_paths[current_node])[1][:]
-                    print(current_node_path)
+
                     current_node_path.append(item[0])
-                    print(current_node_path)
+
                     (distances_and_paths[item[0]])[0] = item[1] + current_node_weight
                     (distances_and_paths[item[0]])[1] = current_node_path
-                    print(distances_and_paths)
+
                     continue
                 elif potential_weight < original_weight:
                     current_node_path = (distances_and_paths[current_node])[1][:]
-                    print(current_node_path)
+
                     current_node_path.append(item[0])
-                    print(current_node_path)
+
                     (distances_and_paths[item[0]])[0] = item[1] + current_node_weight
                     (distances_and_paths[item[0]])[1] = current_node_path
-                print(distances_and_paths)
-                print('current_node ' + str(current_node))
-                print('dest_node ' + str(dest_node))
-            print('current_node ' + str(current_node))
-            print('dest_node ' + str(dest_node))
+
             if current_node == dest_node:
-                print('final dist path: ' + str(distances_and_paths))
+
                 return str((distances_and_paths[dest_node])[0]) + ' ' + str((distances_and_paths[dest_node])[1])
-                # return str(shortest_path) + ' ' + str(shortest_distance)
+
             unvisited.remove(current_node)
             next_node = None
             for key, value in distances_and_paths.items():
@@ -193,20 +188,9 @@ class Graph(object):
                     elif (distances_and_paths[key])[0]:
                         if (distances_and_paths[key])[0] < (distances_and_paths[next_node])[0]:
                             next_node = key
-            print('next_node ' + str(next_node))
+
             current_node = next_node
-            # print(unvisited)
-            # unvisited.remove(current_node)
-        #     if
-        #     distances_and_paths[item[0]][1].extend(the list?)
-        # unvisited.pop(current_node)
-        # current_node = "call the helper function to find the min in distances_and_paths"
 
-        # while(True):
-        #     for each in self.neighbors(current_node):
-        #         previous_weight = 
-
-        # def find_the_min():  ## that's the helper function.
 
 
 # if __name__ == "__main__": # pragma: no cover
