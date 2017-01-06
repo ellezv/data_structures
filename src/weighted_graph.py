@@ -178,7 +178,7 @@ class Graph(object):
 
             unvisited.remove(current_node)
             next_node = None
-            for key, value in distances_and_paths.items():
+            for key in distances_and_paths:
                 if key in unvisited:
                     if next_node is None:
                         next_node = key
