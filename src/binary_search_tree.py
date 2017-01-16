@@ -20,19 +20,22 @@ class BinarySearchTree(object):
                 self._values.setdefault(value, Node(value))
                 return
             node = self._root_node
+            depth = 1
             while True:
                 if value > node.value:
                     if node.right is None:
-                        node.right = Node(value)
+                        node.right = Node(value, depth)
                         self._values.setdefault(value, node.right)
                         return
                     node = node.right
+                    depth += 1
                 elif value < node.value:
                     if node.left is None:
-                        node.left = Node(value)
+                        node.left = Node(value, depth)
                         self._values.setdefault(value, node.left)
                         return
                     node = node.left
+                    depth += 1
 
     def search(self, value):
         """Return the node containing that value or None if not in Tree."""
@@ -45,12 +48,20 @@ class BinarySearchTree(object):
         """Return the number of nodes in the bst."""
         return len(self._values.keys())
 
+    def depth(self):
+        """Return the depth of BST."""
+        depth = 0
+        for node in self._values:
+            if self._values[node].depth > depth:
+                depth = self._values[node].depth
+        return depth
 
 class Node(object):
     """Node."""
 
-    def __init__(self, val, left=None, right=None):
+    def __init__(self, val, depth=0):
         """Init node."""
         self.value = val
-        self.left = left
-        self.right = right
+        self.left = None
+        self.right = None
+        self.depth = depth

@@ -102,5 +102,12 @@ def test_search_non_existing_node(pop_bst):
     """Test that the search method returns None if the node does not exist."""
     assert pop_bst.search(7) is None
 
+
 def test_size_for_populated_bst(pop_bst):
     """Test that the proper size is returned."""
+    assert pop_bst.size() == 3
+
+
+def test_size_for_empty_bst(empty_bst):
+    """Test that the proper size is returned."""
+    assert empty_bst.size() == 0
