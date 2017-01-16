@@ -56,6 +56,14 @@ class BinarySearchTree(object):
                 depth = self._values[node].depth
         return depth
 
+    def contains(self, value):
+        """Return True if value is in the bst alse return False."""
+        try:
+            if self._values[value]:
+                return True
+        except KeyError:
+            return False
+
 class Node(object):
     """Node."""
 
