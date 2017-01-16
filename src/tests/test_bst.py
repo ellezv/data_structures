@@ -132,3 +132,20 @@ def test_contains_value_in_tree(pop_bst):
 def test_contains_value_not_in_tree(pop_bst):
     """Test contains method returns false if value not in tree."""
     assert not pop_bst.contains(42)
+
+
+def test_balance_balanced_tree(pop_bst):
+    """Return 0 for a balances bst."""
+    assert pop_bst.balance() == 0
+
+
+def test_balance_off_balance_left(pop_bst):
+    """Return -1 for a bst with one more node on the left than the right."""
+    pop_bst.insert(7)
+    assert pop_bst.balance() == -1
+
+
+def test_balance_off_balance_right(pop_bst):
+    """Return 1 for a bst with one more node on the right than the left."""
+    pop_bst.insert(13)
+    assert pop_bst.balance() == 1
