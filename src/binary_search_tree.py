@@ -11,14 +11,26 @@ class BinarySearchTree(object):
 
     def insert(self, value):
         """Insert a values, ignores if value is already in bst."""
-        self._values.setdefault(value, True)
-        if self._root_node is None:
-            self._root_node = Node(value)
-            return
-        if value > self._root_node.value:
-            self._root_node.right = Node(value)
-        elif value < self._root_node.value:
-            self._root_node.left = Node(value)
+        if not self._values[value]:
+            if self._root_node is None:
+                self._root_node = Node(value)
+                self._values.setdefault(value, True)
+                return
+            node = self._root_node
+            self._values.setdefault(Node(value), True)
+            while True:
+                if value > node.value:
+                    if node.right is None:
+                        node.right = Node(value)
+                        self._values.setdefault(value, node.right)
+                        return
+                    node = node.right
+                elif value < node.value:
+                    if node.left is None:
+                        node.left = Node(value)
+                        self._values.setdefault(value, node.left)
+                        return
+                    node = node.left
 
 
 class Node(object):
