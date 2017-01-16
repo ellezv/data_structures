@@ -122,3 +122,13 @@ def test_depth_for_only_root_node(empty_bst):
     """Test that the root node has a bepth of 0."""
     empty_bst.insert(1)
     assert empty_bst.depth() == 0
+
+
+def test_contains_value_in_tree(pop_bst):
+    """Test contains method returns true if value is in tree."""
+    assert pop_bst.contains(15)
+
+
+def test_contains_value_not_in_tree(pop_bst):
+    """Test contains method returns false if value not in tree."""
+    assert not pop_bst.contains(42)
