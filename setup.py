@@ -17,7 +17,8 @@ setup(
         'deque',
         'priority_queue',
         'binheap',
-        'simple_graph'
+        'simple_graph',
+        'binary_search_tree',
     ],
     package_dir={'': 'src'},
     install_requires=[],
