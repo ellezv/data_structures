@@ -41,6 +41,10 @@ class BinarySearchTree(object):
         except KeyError:
             return None
 
+    def size(self):
+        """Return the number of nodes in the bst."""
+        return len(self._values.keys())
+
 
 class Node(object):
     """Node."""

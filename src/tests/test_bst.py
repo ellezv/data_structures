@@ -86,9 +86,10 @@ def test_insert_existing_value(empty_bst):
     assert len(empty_bst._values.keys()) == 1
 
 
-def test_for_larger_tree():
-    """Test for a larger tree."""
-    pass
+def test_insert_for_larger_tree(pop_bst):
+    """Test insert for a larger tree."""
+    pop_bst.insert(3)
+    assert pop_bst._root_node.left.left.value == 3
 
 
 def test_search_existing_node(pop_bst):
@@ -100,3 +101,6 @@ def test_search_existing_node(pop_bst):
 def test_search_non_existing_node(pop_bst):
     """Test that the search method returns None if the node does not exist."""
     assert pop_bst.search(7) is None
+
+def test_size_for_populated_bst(pop_bst):
+    """Test that the proper size is returned."""
