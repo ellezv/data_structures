@@ -12,6 +12,17 @@ def empty_bst():
     return bst
 
 
+@pytest.fixture
+def pop_bst():
+    """Instantiate a populated bst."""
+    from binary_search_tree import BinarySearchTree
+    bst = BinarySearchTree()
+    bst.insert(10)
+    bst.insert(15)
+    bst.insert(5)
+    return bst
+
+
 def test_init_bst(empty_bst):
     """Test that an instance of the binary search tree is properly made."""
     from binary_search_tree import BinarySearchTree
@@ -76,4 +87,16 @@ def test_insert_existing_value(empty_bst):
 
 
 def test_for_larger_tree():
+    """Test for a larger tree."""
     pass
+
+
+def test_search_existing_node(pop_bst):
+    """Test that the search method finds the desired node."""
+    assert pop_bst.search(5) == pop_bst._values[5]
+    assert pop_bst.search(5).value == 5
+
+
+def test_search_non_existing_node(pop_bst):
+    """Test that the search method returns None if the node does not exist."""
+    assert pop_bst.search(7) is None
