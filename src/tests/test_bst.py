@@ -4,11 +4,18 @@
 import pytest
 
 
-def test_init_bst():
-    """Test that an instance of the binary search tree is properly made."""
+@pytest.fixture
+def empty_bst():
+    """Instantiate empty bst."""
     from binary_search_tree import BinarySearchTree
     bst = BinarySearchTree()
-    assert isinstance(bst, BinarySearchTree)
+    return bst
+
+
+def test_init_bst(empty_bst):
+    """Test that an instance of the binary search tree is properly made."""
+    from binary_search_tree import BinarySearchTree
+    assert isinstance(empty_bst, BinarySearchTree)
 
 
 def test_init_node():
@@ -22,4 +29,26 @@ def test_node_val():
     """Test the value of the Node."""
     from binary_search_tree import Node
     node = Node(1)
-    assert Node.val = 1
+    assert node.value == 1
+
+
+def test_init_sets_root_to_none(empty_bst):
+    """Test the root node is None."""
+    assert empty_bst._root_node is None
+
+
+def test_init_sets_empty_dict_values(empty_bst):
+    """Test the values dict is empty."""
+    assert empty_bst._values == {}
+
+
+def test_insert_add_value_to_dict(empty_bst):
+    """Test the value gets added to values dictionary."""
+    empty_bst.insert(1)
+    assert empty_bst._values[1]
+
+
+def test_insert_value_empty_bst_set_root_node(empty_bst):
+    """Test the root node is set to first inserted value."""
+    empty_bst.insert(1)
+    assert empty_bst._root_node.value == 1

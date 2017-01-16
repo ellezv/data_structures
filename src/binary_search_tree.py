@@ -6,7 +6,14 @@ class BinarySearchTree(object):
 
     def __init__(self):
         """Init bst."""
-        pass
+        self._values = {}
+        self._root_node = None
+
+    def insert(self, value):
+        """insert a values, ignores if value is already in bst."""
+        self._values.setdefault(value, True)
+        if self._root_node is None:
+            self._root_node = Node(value)
 
 
 class Node(object):
@@ -14,4 +21,4 @@ class Node(object):
 
     def __init__(self, val, left=None, right=None):
         """Init node."""
-        self.val = val
+        self.value = val
