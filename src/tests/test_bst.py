@@ -66,3 +66,14 @@ def test_insert_left_node_added(empty_bst):
     empty_bst.insert(1)
     empty_bst.insert(0)
     assert empty_bst._root_node.left.value is 0
+
+
+def test_insert_existing_value(empty_bst):
+    """Test that an existing value is ignored."""
+    empty_bst.insert(1)
+    assert empty_bst.insert(1) == 1
+    assert len(empty_bst._values.keys()) == 1
+
+
+def test_for_larger_tree():
+    pass
