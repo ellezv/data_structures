@@ -111,3 +111,14 @@ def test_size_for_populated_bst(pop_bst):
 def test_size_for_empty_bst(empty_bst):
     """Test that the proper size is returned."""
     assert empty_bst.size() == 0
+
+
+def test_depth_for_populated_bst(pop_bst):
+    """Test that the depth returned is the number of layers in the bst."""
+    assert pop_bst.depth() == 1
+
+
+def test_depth_for_only_root_node(empty_bst):
+    """Test that the root node has a bepth of 0."""
+    empty_bst.insert(1)
+    assert empty_bst.depth() == 0
