@@ -34,6 +34,13 @@ class BinarySearchTree(object):
                         return
                     node = node.left
 
+    def search(self, value):
+        """Return the node containing that value or None if not in Tree."""
+        try:
+            return self._values[value]
+        except KeyError:
+            return None
+
 
 class Node(object):
     """Node."""
