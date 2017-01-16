@@ -64,6 +64,18 @@ class BinarySearchTree(object):
         except KeyError:
             return False
 
+    def balance(self):
+        """Return positive or negative integer based on what side the tree leans towards."""
+        left = 0
+        right = 0
+        for key in self._values:
+            if key > self._root_node.value:
+                right += 1
+            elif key < self._root_node.value:
+                left += 1
+        return left - right
+
+
 class Node(object):
     """Node."""
 
