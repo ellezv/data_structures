@@ -52,3 +52,17 @@ def test_insert_value_empty_bst_set_root_node(empty_bst):
     """Test the root node is set to first inserted value."""
     empty_bst.insert(1)
     assert empty_bst._root_node.value == 1
+
+
+def test_insert_right_node_added(empty_bst):
+    """Test that a node of a higher value is added to the right of the root."""
+    empty_bst.insert(1)
+    empty_bst.insert(2)
+    assert empty_bst.right.value is 2
+
+
+def test_insert_left_node_added(empty_bst):
+    """Test that a node of a lesser value is added tp the left of the root."""
+    empty_bst.insert(1)
+    empty_bst.insert(0)
+    assert empty_bst.left.value is 0
