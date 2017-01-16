@@ -17,6 +17,8 @@ class BinarySearchTree(object):
             return
         if value > self._root_node.value:
             self._root_node.right = Node(value)
+        elif value < self._root_node.value:
+            self._root_node.left = Node(value)
 
 
 class Node(object):
@@ -25,3 +27,5 @@ class Node(object):
     def __init__(self, val, left=None, right=None):
         """Init node."""
         self.value = val
+        self.left = left
+        self.right = right
