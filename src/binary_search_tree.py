@@ -28,21 +28,21 @@ class BinarySearchTree(object):
             self._size += 1
             while True:
                 if value > node.value:
+                    self._right_depth += 1
                     if node.right is None:
                         node.right = Node(value, depth)
                         self._values.setdefault(value, node.right)
                         return
                     node = node.right
                     depth += 1
-                    self._right_depth += 1
                 elif value < node.value:
+                    self._left_depth += 1
                     if node.left is None:
                         node.left = Node(value, depth)
                         self._values.setdefault(value, node.left)
                         return
                     node = node.left
                     depth += 1
-                    self._left_depth += 1
 
     def search(self, value):
         """Return the node containing that value or None if not in Tree."""
