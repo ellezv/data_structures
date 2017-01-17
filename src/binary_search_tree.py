@@ -28,7 +28,6 @@ class BinarySearchTree(object):
             self._size += 1
             while True:
                 if value > node.value:
-                    self._right_depth += 1
                     if node.right is None:
                         node.right = Node(value, depth)
                         self._values.setdefault(value, node.right)
@@ -36,7 +35,6 @@ class BinarySearchTree(object):
                     node = node.right
                     depth += 1
                 elif value < node.value:
-                    self._left_depth += 1
                     if node.left is None:
                         node.left = Node(value, depth)
                         self._values.setdefault(value, node.left)
@@ -74,6 +72,18 @@ class BinarySearchTree(object):
     def balance(self):
         """Return positive or negative integer based on what side the tree leans towards."""
         return self._right_depth - self._left_depth
+
+    def breadth_first(self):
+        """A breadth first traversal of our tree."""
+        path = [self._root_node]
+        parent = self._root_node
+        children = [parent.left, parent.right]
+        while len(children):
+            yield path
+            path += children
+            parent = children
+            for node in parent:
+                children += [parent.left, parent.right]
 
 
 class Node(object):

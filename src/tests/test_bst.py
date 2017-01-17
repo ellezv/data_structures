@@ -149,3 +149,10 @@ def test_balance_off_balance_right(pop_bst):
     """Return 1 for a bst with one more node on the right than the left."""
     pop_bst.insert(13)
     assert pop_bst.balance() == 1
+
+
+@pytest.mark.parama
+def test_breadth_first(empty_bst, inserts, answer):
+    for i in inserts:
+        empty_bst.insert(i)
+    assert empty_bst.breadth_first() is answer
