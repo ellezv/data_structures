@@ -57,6 +57,8 @@ class BinarySearchTree(object):
 
     def depth(self):
         """Return the depth of BST."""
+        if self._root_node is None:
+            raise AttributeError('The tree is empty, it has no depth.')
         if self._left_depth > self._right_depth:
             return self._left_depth
         return self._right_depth
