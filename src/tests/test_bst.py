@@ -156,3 +156,10 @@ def test_breadth_first(empty_bst, inserts, answer):
     for i in inserts:
         empty_bst.insert(i)
     assert empty_bst.breadth_first() is answer
+
+
+def test_depth_empty_bst_raise_error(empty_bst):
+    """Test that the proper error is raised."""
+    message = "The tree is empty, it has no depth."
+    with pytest.raises(AttributeError, message=message):
+        empty_bst.depth()
