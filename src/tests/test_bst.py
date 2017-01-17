@@ -4,6 +4,15 @@
 import pytest
 
 
+BREADTH_FIRST = [
+    [[20, 9, 22, 7, 12, 21, 25], [20, 9, 22, 7, 12, 21, 25]],
+    [[10, 13, 45, 32, 46, 1, 34, 4, 3, 5], [10, 1, 13, 4, 32, 45, 3, 5, 34, 46]],
+    [[1, 2, 3, 1.5, .5, .75, .25], [1, .5, 2, .25, .75, 1.5, 3]],
+    [[10], [10]],
+    [[], None],
+]
+
+
 @pytest.fixture
 def empty_bst():
     """Instantiate empty bst."""
@@ -151,8 +160,9 @@ def test_balance_off_balance_right(pop_bst):
     assert pop_bst.balance() == 1
 
 
-@pytest.mark.parama
+@pytest.mark.paramatrize('inserts, answer', BREADTH_FIRST)
 def test_breadth_first(empty_bst, inserts, answer):
+    """Test that breadth first returns the proper list."""
     for i in inserts:
         empty_bst.insert(i)
     assert empty_bst.breadth_first() is answer
