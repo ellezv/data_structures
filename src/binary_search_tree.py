@@ -69,9 +69,9 @@ class BinarySearchTree(object):
         left = 0
         right = 0
         for key in self._values:
-            if key > self._root_node.value:
+            if key > self._root_node.value and self._values[key].depth > right:
                 right += 1
-            elif key < self._root_node.value:
+            elif key < self._root_node.value and self.values[key].depth > left:
                 left += 1
         return left - right
 
