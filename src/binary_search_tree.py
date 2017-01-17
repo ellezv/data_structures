@@ -8,6 +8,9 @@ class BinarySearchTree(object):
         """Init bst."""
         self._values = {}
         self._root_node = None
+        self._left_depth = 0
+        self._right_depth = 0
+        self._size = 0
 
     def insert(self, value):
         """Insert a values, ignores if value is already in bst."""
@@ -21,6 +24,7 @@ class BinarySearchTree(object):
                 return
             node = self._root_node
             depth = 1
+            self._size += 1
             while True:
                 if value > node.value:
                     if node.right is None:
@@ -29,6 +33,7 @@ class BinarySearchTree(object):
                         return
                     node = node.right
                     depth += 1
+                    self._right_depth += 1
                 elif value < node.value:
                     if node.left is None:
                         node.left = Node(value, depth)
@@ -36,6 +41,7 @@ class BinarySearchTree(object):
                         return
                     node = node.left
                     depth += 1
+                    self._left_depth += 1
 
     def search(self, value):
         """Return the node containing that value or None if not in Tree."""
@@ -46,15 +52,13 @@ class BinarySearchTree(object):
 
     def size(self):
         """Return the number of nodes in the bst."""
-        return len(self._values.keys())
+        return self._size
 
     def depth(self):
         """Return the depth of BST."""
-        depth = 0
-        for node in self._values:
-            if self._values[node].depth > depth:
-                depth = self._values[node].depth
-        return depth
+        if self._left_depth > self._right_depth:
+            return self._left_depth
+        return self._right_depth
 
     def contains(self, value):
         """Return True if value is in the bst alse return False."""
@@ -66,14 +70,7 @@ class BinarySearchTree(object):
 
     def balance(self):
         """Return positive or negative integer based on what side the tree leans towards."""
-        left = 0
-        right = 0
-        for key in self._values:
-            if key > self._root_node.value and self._values[key].depth > right:
-                right += 1
-            elif key < self._root_node.value and self.values[key].depth > left:
-                left += 1
-        return left - right
+        return self._right_depth - self._left_depth
 
 
 class Node(object):
