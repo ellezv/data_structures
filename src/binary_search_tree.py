@@ -28,21 +28,32 @@ class BinarySearchTree(object):
             self._size += 1
             while True:
                 if value > node.value:
-                    self._right_depth += 1
                     if node.right is None:
                         node.right = Node(value, depth)
                         self._values.setdefault(value, node.right)
+                        self._side_depth(value, depth)
                         return
                     node = node.right
                     depth += 1
                 elif value < node.value:
-                    self._left_depth += 1
                     if node.left is None:
                         node.left = Node(value, depth)
                         self._values.setdefault(value, node.left)
+                        self._side_depth(value, depth)
                         return
                     node = node.left
                     depth += 1
+
+    def _side_depth(self, value, depth):
+        """Helper function to find what side depth to increment."""
+        if value > self._root_node.value:
+            side = "right"
+        else:
+            side = "left"
+        if side == "left" and depth > self._left_depth:
+            self._left_depth = depth
+        elif side == "right" and depth > self._right_depth:
+            self._right_depth = depth
 
     def search(self, value):
         """Return the node containing that value or None if not in Tree."""

@@ -149,3 +149,10 @@ def test_balance_off_balance_right(pop_bst):
     """Return 1 for a bst with one more node on the right than the left."""
     pop_bst.insert(13)
     assert pop_bst.balance() == 1
+
+
+def test_depth_empty_bst_raise_error(empty_bst):
+    """Test that the proper error is raised."""
+    message = "The tree is empty, it has no depth."
+    with pytest.raises(AttributeError, message=message):
+        empty_bst.depth()
