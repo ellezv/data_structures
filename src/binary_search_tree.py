@@ -21,6 +21,7 @@ class BinarySearchTree(object):
             if self._root_node is None:
                 self._root_node = Node(value)
                 self._values.setdefault(value, Node(value))
+                self._size += 1
                 return
             node = self._root_node
             depth = 1
