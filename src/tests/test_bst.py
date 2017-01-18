@@ -6,12 +6,35 @@ import pytest
 
 BREADTH_FIRST = [
     [[20, 9, 22, 7, 12, 21, 25], [20, 9, 22, 7, 12, 21, 25]],
-    [[10, 13, 45, 32, 46, 1, 34, 4, 3, 5], [10, 1, 13, 4, 32, 45, 3, 5, 34, 46]],
+    [[10, 13, 45, 32, 46, 1, 34, 4, 3, 5], [10, 1, 13, 4, 45, 3, 5, 32, 46, 34]],
     [[1, 2, 3, 1.5, .5, .75, .25], [1, .5, 2, .25, .75, 1.5, 3]],
     [[10], [10]],
-    [[], None],
+    [[], []],
 ]
 
+IN_ORDER = [
+    [[], []],
+    [[10, 13, 45, 32, 46, 1, 34, 4, 3, 5], [1, 3, 4, 5, 10, 13, 32, 34, 45, 46]],
+    [[20, 9, 22, 7, 12, 21, 25], [7, 9, 12, 20, 21, 22, 25]],
+    [[10], [10]],
+    [[1, 2, 3, 1.5, .5, .75, .25], [.25, .5, .75, 1, 1.5, 2, 3]]
+]
+
+POST_ORDER = [
+    [[1, 2, 3, 1.5, .5, .75, .25], [0.25, 0.75, 0.5, 1.5, 3, 2, 1]],
+    [[20, 9, 22, 7, 12, 21, 25], [7, 12, 9, 21, 25, 22, 20]],
+    [[10, 13, 45, 32, 46, 1, 34, 4, 3, 5], [3, 5, 4, 1, 34, 32, 46, 45, 13, 10]],
+    [[9], [9]],
+    [[], []]
+]
+
+PRE_ORDER = [
+    [[1, 2, 3, 1.5, .5, .75, .25], ],
+    [[20, 9, 22, 7, 12, 21, 25], [10, 1, 4, 3, 4, 13, 45, 32, 46, 34]],
+    [[10, 13, 45, 32, 46, 1, 34, 4, 3, 5], [20, 4, 7, 12, 22, 21, 25]],
+    [[9], [9]],
+    [[], []]
+]
 
 @pytest.fixture
 def empty_bst():
@@ -160,12 +183,13 @@ def test_balance_off_balance_right(pop_bst):
     assert pop_bst.balance() == 1
 
 
-@pytest.mark.paramatrize('inserts, answer', BREADTH_FIRST)
+@pytest.mark.parametrize('inserts, answer', BREADTH_FIRST)
 def test_breadth_first(empty_bst, inserts, answer):
     """Test that breadth first returns the proper list."""
     for i in inserts:
         empty_bst.insert(i)
-    assert empty_bst.breadth_first() is answer
+    a = empty_bst.breadth_first()
+    assert [next(a) for i in inserts] == answer
 
 
 def test_depth_empty_bst_raise_error(empty_bst):
@@ -173,3 +197,21 @@ def test_depth_empty_bst_raise_error(empty_bst):
     message = "The tree is empty, it has no depth."
     with pytest.raises(AttributeError, message=message):
         empty_bst.depth()
+
+
+@pytest.mark.parametrize('inserts, answer', IN_ORDER)
+def test_in_order(empty_bst, inserts, answer):
+    """Test that in order traversal yield expected value."""
+    for i in inserts:
+        empty_bst.insert(i)
+    a = empty_bst.in_order()
+    assert [next(a) for i in inserts] == answer
+
+
+@pytest.mark.parametrize('inserts, answer', POST_ORDER)
+def test_post_order(empty_bst, inserts, answer):
+    """Test that post order traversal yield expected value."""
+    for i in inserts:
+        empty_bst.insert(i)
+    a = empty_bst.post_order()
+    assert [next(a) for i in inserts] == answer
