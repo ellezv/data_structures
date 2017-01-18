@@ -86,21 +86,27 @@ class BinarySearchTree(object):
         """Return positive or negative integer based on what side the tree leans towards."""
         return self._right_depth - self._left_depth
 
-    def breadth_first(self, parent=None, path=None):
-        """A breadth first traversal of our tree."""
-        if path is None:
-            path = [self._root_node.value]
-        if parent is None:
-            parent = [self._root_node]
-        children = []
-        while True:
-            for node in parent:
-                children.append(node.left)
-                children.append(node.right)
-                path.extend([node.value for node in children])
-            parent = children
-            yield path
+    def in_order(self):
+        """An in order traversal of our tree."""
+        if self._root_node:
+            for node in self._root_node.in_order_node():
+                yield node
 
+    def pre_order(self):
+        """A pre order traversal of our tree."""
+        if self._root_node:
+            for node in self._root_node.pre_order_node():
+                yield node
+
+    def post_order(self):
+        """A post order traversal for our tree."""
+        if self._root_node:
+            for node in self._root_node.post_order_node():
+                yield node
+
+    # def breadth_first(self):
+    #     """A breadth first traversal of our tree."""
+    #     node = self._root_node
 
 
 class Node(object):
@@ -112,3 +118,40 @@ class Node(object):
         self.left = None
         self.right = None
         self.depth = depth
+
+    def in_order_node(self):
+        """In order traversal for node."""
+        if self.left:
+            for node in self.left.in_order_node():
+                yield node
+        yield self.value
+        if self.right:
+            for node in self.right.in_order_node():
+                yield node
+
+    def pre_order_node(self):
+        """Pre order traversal for node."""
+        yield self.value
+        if self.left:
+            for node in self.left.pre_order_node():
+                yield node
+        if self.right:
+            for node in self.right.pre_order_node():
+                yield node
+
+    def post_order_node(self):
+        """Post order traversal for node."""
+        if self.left:
+            for node in self.left.post_order_node():
+                yield node
+        if self.right:
+            for node in self.right.post_order_node():
+                yield node
+        yield self.value
+
+
+if __name__ == '__main__':
+    bst = BinarySearchTree()
+    a = [20, 9, 22, 7, 12, 21, 25]
+    for i in a:
+        bst.insert(i)
