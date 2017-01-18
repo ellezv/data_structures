@@ -158,7 +158,7 @@ class Node(object):
         yield self.value
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     bst = BinarySearchTree()
     a = [20, 9, 22, 7, 12, 21, 25]
     for i in a:
