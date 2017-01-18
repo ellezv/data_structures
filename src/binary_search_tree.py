@@ -104,9 +104,17 @@ class BinarySearchTree(object):
             for node in self._root_node.post_order_node():
                 yield node
 
-    # def breadth_first(self):
-    #     """A breadth first traversal of our tree."""
-    #     node = self._root_node
+    def breadth_first(self):
+        """A breadth first traversal of our tree."""
+        queue = []
+        queue.append(self._root_node)
+        while queue:
+            node = queue.pop(0)
+            yield node.value
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
 
 
 class Node(object):
