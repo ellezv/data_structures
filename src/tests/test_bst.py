@@ -29,12 +29,13 @@ POST_ORDER = [
 ]
 
 PRE_ORDER = [
-    [[1, 2, 3, 1.5, .5, .75, .25], ],
-    [[20, 9, 22, 7, 12, 21, 25], [10, 1, 4, 3, 4, 13, 45, 32, 46, 34]],
-    [[10, 13, 45, 32, 46, 1, 34, 4, 3, 5], [20, 4, 7, 12, 22, 21, 25]],
+    [[1, 2, 3, 1.5, .5, .75, .25], [1, .5, .25, .75, 2, 1.5, 3]],
+    [[20, 9, 22, 7, 12, 21, 25], [20, 9, 7, 12, 22, 21, 25]],
+    [[10, 13, 45, 32, 46, 1, 34, 4, 3, 5], [10, 1, 4, 3, 5, 13, 45, 32, 34, 46]],
     [[9], [9]],
     [[], []]
 ]
+
 
 @pytest.fixture
 def empty_bst():
@@ -214,4 +215,13 @@ def test_post_order(empty_bst, inserts, answer):
     for i in inserts:
         empty_bst.insert(i)
     a = empty_bst.post_order()
+    assert [next(a) for i in inserts] == answer
+
+
+@pytest.mark.parametrize('inserts, answer', PRE_ORDER)
+def test_pre_order(empty_bst, inserts, answer):
+    """Test that pre order traversal yield expected value."""
+    for i in inserts:
+        empty_bst.insert(i)
+    a = empty_bst.pre_order()
     assert [next(a) for i in inserts] == answer
