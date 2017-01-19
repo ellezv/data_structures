@@ -86,18 +86,6 @@ class BinarySearchTree(object):
         """Return positive or negative integer based on what side the tree leans towards."""
         return self._right_depth - self._left_depth
 
-    def breadth_first(self):
-        """A breadth first traversal of our tree."""
-        path = [self._root_node]
-        parent = self._root_node
-        children = [parent.left, parent.right]
-        while len(children):
-            yield path
-            path += children
-            parent = children
-            for node in parent:
-                children += [parent.left, parent.right]
-
 
 class Node(object):
     """Node."""
