@@ -36,6 +36,18 @@ PRE_ORDER = [
     [[], []]
 ]
 
+DELETE_SIZE = [
+    [[1, 2, 3, 1.5, .5, .75, .25], 2, 6],
+    [[10, 13, 45, 32, 46, 1, 34, 4, 3, 5], 3, 9],
+    [[2, 3, 1, 1.5], 1, 3],
+    [[9], 9, 0],
+    [[20, 9, 22, 7], 20, 3],
+    [[2, 3, 1, 1.5, 4], 4, 4],
+    [[10, 13, 45, 32, 46, 1, 34, 4, 3, 5], 1, 9],
+    [[1, 3, 2, 6, 5, 4], 6, 5],
+
+]
+
 
 @pytest.fixture
 def empty_bst():
@@ -232,3 +244,21 @@ def test_delete_unexisting_node(empty_bst):
     message = "You can't delete a nonexistant node."
     with pytest.raises(ValueError, message=message):
         empty_bst.delete(1)
+
+
+@pytest.mark.parametrize('inserts, node, size', DELETE_SIZE)
+def test_delete_changes_size(empty_bst, inserts, node, size):
+    """Test that delete a node will change the size."""
+    for i in inserts:
+        empty_bst.insert(i)
+    empty_bst.delete(node)
+    assert empty_bst.size() == size
+
+
+def test_improper_delete(pop_bst):
+    """Test for Joey's method which works anyway."""
+    pop_bst._improper_delete(15)
+    assert pop_bst.size() == 2
+    assert pop_bst._root_node.value == 10
+    assert pop_bst._root_node.left.value == 5
+    assert pop_bst._root_node.right is None

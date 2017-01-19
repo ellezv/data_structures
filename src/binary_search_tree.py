@@ -131,6 +131,7 @@ class BinarySearchTree(object):
                 while new_node.right is not None:
                     new_node = new_node.right
                 self.delete(new_node.value)
+                self._size += 1  # to counter the decrement during recursion
                 new_node.left, new_node.right = node.left, node.right
                 self._root_node = new_node
         else:
