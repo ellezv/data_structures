@@ -1,4 +1,5 @@
 # Data Structures
+[![Build Status](https://travis-ci.org/ellezv/data_structures.svg?branch=bst_traversals)](https://travis-ci.org/ellezv/data_structures)
 
 This repo contains implementations of various Data Structures in Python (2 and 3).
 
@@ -52,7 +53,7 @@ This repo contains implementations of various Data Structures in Python (2 and 3
 ---------- coverage: platform darwin, python 3.5.2-final-0 -----------
 Name                               Stmts   Miss  Cover   Missing
 ----------------------------------------------------------------
-src/binary_search_tree.py             72      1    99%   74
+src/binary_search_tree.py            118      1    99%   74
 src/binheap.py                        29      4    86%   24, 38, 40-41
 src/deque.py                          28      0   100%
 src/dll.py                            56      2    96%   72, 82
@@ -63,7 +64,7 @@ src/simple_graph.py                   70      0   100%
 src/stack.py                          13      0   100%
 src/tests/__init__.py                  0      0   100%
 src/tests/test_binheap.py             58      0   100%
-src/tests/test_bst.py                 78      0   100%
+src/tests/test_bst.py                102      0   100%
 src/tests/test_deque.py               64      0   100%
 src/tests/test_dll.py                 70      0   100%
 src/tests/test_linked_list.py         78      0   100%
@@ -72,7 +73,9 @@ src/tests/test_queue.py               58      0   100%
 src/tests/test_simple_graph.py       125      0   100%
 src/tests/test_stack.py               26      0   100%
 ----------------------------------------------------------------
-TOTAL                                959     36    96%
+TOTAL                               1029     36    97%
+
+
                   
 ```
 ### Python 2.7.10
@@ -80,7 +83,7 @@ TOTAL                                959     36    96%
 ---------- coverage: platform darwin, python 2.7.10-final-0 ----------
 Name                               Stmts   Miss  Cover   Missing
 ----------------------------------------------------------------
-src/binary_search_tree.py             72      1    99%   74
+src/binary_search_tree.py            118      1    99%   74
 src/binheap.py                        29      4    86%   24, 38, 40-41
 src/deque.py                          28      0   100%
 src/dll.py                            56      2    96%   72, 82
@@ -91,7 +94,7 @@ src/simple_graph.py                   70      0   100%
 src/stack.py                          13      0   100%
 src/tests/__init__.py                  0      0   100%
 src/tests/test_binheap.py             58      0   100%
-src/tests/test_bst.py                 78      0   100%
+src/tests/test_bst.py                102      0   100%
 src/tests/test_deque.py               64      0   100%
 src/tests/test_dll.py                 70      0   100%
 src/tests/test_linked_list.py         78      0   100%
@@ -100,6 +103,6 @@ src/tests/test_queue.py               58      0   100%
 src/tests/test_simple_graph.py       125      0   100%
 src/tests/test_stack.py               26      0   100%
 ----------------------------------------------------------------
-TOTAL                                959     36    96%
+TOTAL                               1029     36    97%
 
 ```

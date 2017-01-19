@@ -118,7 +118,10 @@ class BinarySearchTree(object):
 
     def delete(self, value):
         """Delete a nose from the tree."""
-        node = self._values[value]
+        try:
+            node = self._values[value]
+        except KeyError:
+            raise ValueError("You can't delete an nonexistant node.")
         parent = self._find_parent(node)
         if parent is None:
             if node.left is None and node.right is None:
@@ -240,3 +243,10 @@ class Node(object):
             for node in self.right.post_order_node():
                 yield node
         yield self.value
+
+
+if __name__ == '__main__':  # pragma: no cover
+    bst = BinarySearchTree()
+    a = [20, 9, 22, 7, 12, 21, 25]
+    for i in a:
+        bst.insert(i)
