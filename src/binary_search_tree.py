@@ -20,7 +20,7 @@ class BinarySearchTree(object):
         except KeyError:
             if self._root_node is None:
                 self._root_node = Node(value)
-                self._values.setdefault(value, Node(value))
+                self._values.setdefault(value, self._root_node)
                 self._size += 1
                 return
             node = self._root_node
@@ -116,6 +116,90 @@ class BinarySearchTree(object):
             if node.right:
                 queue.append(node.right)
 
+    def delete(self, value):
+        """Delete a nose from the tree."""
+        node = self._values[value]
+        parent = self._find_parent(node)
+        if parent is None:
+            if node.left is None and node.right is None:
+                self._root_node = None
+            else:
+                new_node = node.left
+                while new_node.right is not None:
+                    new_node = new_node.right
+                self.delete(new_node.value)
+                new_node.left, new_node.right = node.left, node.right
+                self._root_node = new_node
+        else:
+            if node.left is None and node.right is None:
+                self._delete_node_with_no_children(value, parent)
+            elif node.left is not None and node.right is not None:
+                self._delete_node_with_two_children(node, parent)
+            else:
+                self._delete_node_with_one_child(node, parent, value)
+        del self._values[node.value]
+        self._size -= 1
+
+    def _improper_delete(self, value):
+        """A delete function I made for fun that I can imagine would be frowned upon."""
+        values = []
+        gen = self.breadth_first()
+        for i in range(len(self._values)):
+            values.append(next(gen))
+        values.remove(value)
+        self._values = {}
+        self._root_node = None
+        self._left_depth = 0
+        self._right_depth = 0
+        self._size = 0
+        for v in values:
+            self.insert(v)
+
+    def _find_parent(self, node):
+        """A helper function to find the parent of a given node."""
+        for key in self._values.keys():
+            if self._values[key].left is node or self._values[key].right is node:
+                return self._values[key]
+        return None
+
+    def _delete_node_with_no_children(self, value, parent):
+        """Helper function to delete a node with no children."""
+        if value < parent.value:
+            parent.left = None
+        else:
+            parent.right = None
+
+    def _delete_node_with_two_children(self, node, parent):
+        """A helper function to delte a node with two children."""
+        new_node = node.left
+        while new_node.right is not None:
+            new_node = new_node.right
+        new_node_parent = self._find_parent(new_node)
+        new_node_parent.right = new_node.left
+        if node.left is new_node:
+            new_node.right = node.right
+        elif node.right is new_node:
+            new_node.left = node.left
+        else:
+            new_node.left, new_node.right = node.left, node.right
+        if new_node.value < parent.value:
+            parent.left = new_node
+        else:
+            parent.right = new_node
+
+    def _delete_node_with_one_child(self, node, parent, value):
+        """A helper function to delete a node with one child."""
+        if node.left is None:
+            if value < parent.value:
+                parent.left = node.right
+            else:
+                parent.right = node.right
+        else:
+            if value < parent.value:
+                parent.left = node.left
+            else:
+                parent.right = node.left
+
 
 class Node(object):
     """Node."""
@@ -156,10 +240,3 @@ class Node(object):
             for node in self.right.post_order_node():
                 yield node
         yield self.value
-
-
-if __name__ == '__main__':
-    bst = BinarySearchTree()
-    a = [20, 9, 22, 7, 12, 21, 25]
-    for i in a:
-        bst.insert(i)
