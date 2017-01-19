@@ -204,6 +204,20 @@ class BinarySearchTree(object):
             else:
                 parent.right = node.left
 
+    def _balance_self(self):
+        """Balance the tree is needed."""
+        # leaning to the left
+        if self.balance < -1:
+
+        # leaning to the right
+        elif self.balance > 1:
+            pivot_node = self._find_pivot()
+
+    def _find_pivot(self):
+        """Helper function that finds the pivot node of an off balanced tree."""
+        nodes = sorted(self._values.keys())
+        return nodes[int(len(nodes) / 2)]
+
 
 class Node(object):
     """Node."""
@@ -248,6 +262,6 @@ class Node(object):
 
 if __name__ == '__main__':  # pragma: no cover
     bst = BinarySearchTree()
-    a = [20, 9, 22, 7, 12, 21, 25]
+    a = [2, 1, 3, 4, 5, 6]
     for i in a:
         bst.insert(i)
