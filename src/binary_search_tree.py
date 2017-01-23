@@ -208,7 +208,7 @@ class BinarySearchTree(object):
         """Balance the tree is needed."""
         # leaning to the left
         if self.balance < -1:
-
+            pass
         # leaning to the right
         elif self.balance > 1:
             pivot_node = self._find_pivot()
