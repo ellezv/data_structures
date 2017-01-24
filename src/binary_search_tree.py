@@ -43,6 +43,7 @@ class BinarySearchTree(object):
                         return
                     node = node.left
                     depth += 1
+            self.balance()
 
     def _side_depth(self, value, depth):
         """Helper function to find what side depth to increment."""
@@ -122,6 +123,10 @@ class BinarySearchTree(object):
             node = self._values[value]
         except KeyError:
             raise ValueError("You can't delete an nonexistant node.")
+        if value > self._root_node.value:
+            self._right_depth -= 1
+        else:
+            self._left_depth -= 1
         parent = self._find_parent(node)
         if parent is None:
             if node.left is None and node.right is None:
@@ -143,6 +148,7 @@ class BinarySearchTree(object):
                 self._delete_node_with_one_child(node, parent, value)
         del self._values[node.value]
         self._size -= 1
+        self.balance()
 
     def _improper_delete(self, value):
         """A delete function I made for fun that I can imagine would be frowned upon."""
@@ -158,6 +164,7 @@ class BinarySearchTree(object):
         self._size = 0
         for v in values:
             self.insert(v)
+        self.balance()
 
     def _find_parent(self, node):
         """A helper function to find the parent of a given node."""
@@ -204,19 +211,28 @@ class BinarySearchTree(object):
             else:
                 parent.right = node.left
 
-    def _balance_self(self):
-        """Balance the tree is needed."""
-        # leaning to the left
-        if self.balance < -1:
-
-        # leaning to the right
-        elif self.balance > 1:
-            pivot_node = self._find_pivot()
-
     def _find_pivot(self):
         """Helper function that finds the pivot node of an off balanced tree."""
         nodes = sorted(self._values.keys())
         return nodes[int(len(nodes) / 2)]
+
+    def rebalance(self):
+        """Rebalance tree."""
+        if self.balance() > 1 or self.balance < -1:
+            values = []
+            pivot = self._find_pivot()
+            gen = self.breadth_first()
+            for i in range(len(self._values)):
+                values.append(next(gen))
+            values.remove(pivot)
+            values = [pivot] + values
+            self._values = {}
+            self._root_node = None
+            self._left_depth = 0
+            self._right_depth = 0
+            self._size = 0
+            for v in values:
+                self.insert(v)
 
 
 class Node(object):
