@@ -34,3 +34,28 @@ class TrieTree(object):
             if "$" in start.keys():
                 return True
         return False
+
+    def size(self):
+        """Return the size of the Trie tree. O if empty."""
+        return self._size
+
+    def remove(self, value):
+        """Will remove the given string from the trie."""
+        if type(value) is str:
+            current_letter = self._root
+            for letter in value:
+                try:
+                    current_letter = current_letter[letter]
+                except KeyError:
+                    break
+            if "$" in current_letter.keys():
+                del(current_letter['$'])
+                if len(current_letter.keys()):
+                    return
+            for letter in value[::-1]:
+                current_letter = letter
+                if current_letter is {}:
+                    del current_letter
+                else:
+                    break
+        raise KeyError("Cannot remove a word that is not in the Trie.")
