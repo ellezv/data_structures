@@ -4,7 +4,7 @@ import io
 import pytest
 
 
-file = io.open("/etc/dictionaries-common/words")
+file = io.open("/usr/share/dict/words")
 word_file = file.read()
 WORDS = word_file.split("\n")
 
