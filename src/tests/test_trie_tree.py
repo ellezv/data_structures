@@ -56,3 +56,8 @@ def test_contains_true(pop_tt):
 def test_contains_false(empty_tt):
     """Test that the contains method returns false if the word is not in the tree."""
     assert empty_tt.contains('their') is False
+
+
+def test_contains_wrong_type(pop_tt):
+    """Test that the contains method called with the wrong type returns false."""
+    assert pop_tt.contains(4) is False
