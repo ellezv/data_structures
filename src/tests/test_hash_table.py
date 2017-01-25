@@ -4,9 +4,19 @@ import io
 import pytest
 
 
-file = io.open("/usr/share/dict/words")
-word_file = file.read()
-WORDS = word_file.split("\n")
+try:
+    file = io.open("/usr/share/dict/words")
+    word_file = file.read()
+    WORDS = word_file.split("\n")
+    file.close()
+
+except IOError:
+    import os
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    file = io.open(dir_path + "/words")
+    word_file = file.read()
+    WORDS = word_file.split("\n")
+    file.close()
 
 
 @pytest.fixture
