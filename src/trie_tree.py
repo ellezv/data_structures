@@ -8,6 +8,7 @@ class TrieTree(object):
         """Instantiate a Trie tree."""
         self._root = {}
         self._size = 0
+        self._cur_dict = self._root
 
     def insert(self, iter):
         """Insert a string in the trie tree."""
@@ -59,3 +60,19 @@ class TrieTree(object):
                 else:
                     break
         raise KeyError("Cannot remove a word that is not in the Trie.")
+
+    def traversal(self, string):
+        """Depth first traversal."""
+        if type(string) is str:
+            current_letter = self._root
+            for letter in string:
+                try:
+                    current_letter = current_letter[letter]
+                except KeyError:
+                    break
+            self._cur_dict = current_letter
+            for letter in self._cur_dict.keys():
+                yield letter
+                string = string + letter
+                self._cur_dict = self._cur_dict[letter]
+                self.traversal(string)
