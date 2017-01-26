@@ -64,7 +64,7 @@ class TrieTree(object):
     def traversal(self, string):
         """Depth first traversal."""
         if type(string) is str:
-            current_letter = self._root
+            current_letter = self._cur_dict
             for letter in string:
                 try:
                     current_letter = current_letter[letter]
