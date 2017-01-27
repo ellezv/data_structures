@@ -60,11 +60,11 @@ class TrieTree(object):
                     break
         raise KeyError("Cannot remove a word that is not in the Trie.")
 
-    def traversal(self, string, dict_cur=None):
+    def traversal(self, string):
         """Depth first traversal."""
-        if dict_cur is None:
-            dict_cur = self._root
         if type(string) is str:
+            print('hi')
+            dict_cur = self._root
             for letter in string:
                 try:
                     dict_cur = dict_cur[letter]
@@ -72,6 +72,6 @@ class TrieTree(object):
                     break
             for letter in dict_cur.keys():
                 yield letter
-                string = string + letter
-                dict_cur = dict_cur[letter]
-                self.traversal(string, dict_cur)
+                print(letter)
+                for item in self.traversal(string + letter):
+                    yield item
