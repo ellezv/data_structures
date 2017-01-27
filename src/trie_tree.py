@@ -63,7 +63,6 @@ class TrieTree(object):
     def traversal(self, string):
         """Depth first traversal."""
         if type(string) is str:
-            print('hi')
             dict_cur = self._root
             for letter in string:
                 try:
@@ -71,7 +70,14 @@ class TrieTree(object):
                 except KeyError:
                     break
             for letter in dict_cur.keys():
-                yield letter
-                print(letter)
+                if letter != '$':
+                    yield letter
                 for item in self.traversal(string + letter):
                     yield item
+
+
+if __name__ == '__main__':
+    tt = TrieTree()
+    words = ['otter', 'other', 'apple', 'apps', 'tea', 'teabag', 'teapot']
+    for i in words:
+        tt.insert(i)
