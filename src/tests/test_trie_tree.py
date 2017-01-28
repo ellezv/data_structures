@@ -22,6 +22,17 @@ def pop_tt():
     return tt
 
 
+@pytest.fixture
+def tea_trie():
+    """Populated trie tree."""
+    from trie_tree import TrieTree
+    tt = TrieTree()
+    tt.insert("teapot")
+    tt.insert("teabags")
+    tt.insert("teabag")
+    return tt
+
+
 def test_insert(empty_tt):
     """Test the insert method adds a string to the tree that is not already in it."""
     empty_tt.insert('their')
@@ -61,3 +72,34 @@ def test_contains_false(empty_tt):
 def test_contains_wrong_type(pop_tt):
     """Test that the contains method called with the wrong type returns false."""
     assert pop_tt.contains(4) is False
+
+
+def test_remove_exisiting_word(tea_trie):
+    """Test remove method on existing word in trie tree."""
+    tea_trie.remove("teabag")
+    assert tea_trie.size() == 2
+    assert tea_trie._root == {'t': {'e': {'a': {'b': {'a': {'g': {'s': {'$': {}}}}}, 'p': {'o': {'t': {'$': {}}}}}}}}
+
+
+def test_remove_word_not_in_trie(tea_trie):
+    """Test remove method on a non-existing word in trie tree."""
+    with pytest.raises(KeyError):
+        tea_trie.remove("tea")
+
+
+def test_remove_word_in_empty_trie(empty_tt):
+    """Test you can't remove a word in an empty trie."""
+    with pytest.raises(KeyError):
+        empty_tt.remove("word")
+
+
+def test_remove_word_in_pop_trie_changes_size(pop_tt):
+    """."""
+    pop_tt.remove("their")
+    assert pop_tt.size() == 1
+
+
+def test_remove_word_in_pop_trie_changes_root(pop_tt):
+    """Test remove function removes parts of the word from root."""
+    pop_tt.remove("their")
+    assert pop_tt._root == {'t': {'h': {'e': {'r': {'e': {'$': {}}}}}}}
