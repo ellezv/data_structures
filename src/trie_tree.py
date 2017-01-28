@@ -43,19 +43,25 @@ class TrieTree(object):
         """Will remove the given string from the trie."""
         if type(value) is str:
             current_letter = self._root
+            nested = []
             for letter in value:
                 try:
                     current_letter = current_letter[letter]
+                    nested.insert(0, current_letter)
+
                 except KeyError:
-                    break
+                    return
             if "$" in current_letter.keys():
                 del(current_letter['$'])
                 if len(current_letter.keys()):
                     return
-            for letter in value[::-1]:
-                current_letter = letter
-                if current_letter is {}:
-                    del current_letter
+            else:
+                return
+            nested.pop(0)
+            for idx, letter in enumerate(value[::-1]):
+                import pdb; pdb.set_trace()
+                if len(nested[idx][letter].keys()) > 1:
+                    return
                 else:
-                    break
+                    nested[idx] = letter
         raise KeyError("Cannot remove a word that is not in the Trie.")
