@@ -50,10 +50,11 @@ class TrieTree(object):
                     nested.insert(0, current_letter)
 
                 except KeyError:
-                    return
+                    raise KeyError("Cannot remove a word that is not in the Trie.")
             if "$" in current_letter.keys():
                 del(current_letter['$'])
                 if len(current_letter.keys()):
+                    self._size -= 1
                     return
             else:
                 raise KeyError("Cannot remove a word that is not in the Trie.")
