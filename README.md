@@ -1,5 +1,5 @@
 # Data Structures
-[![Build Status](https://travis-ci.org/ellezv/data_structures.svg?branch=bst_delete)](https://travis-ci.org/ellezv/data_structures)
+[![Build Status](https://travis-ci.org/ellezv/data_structures.svg?branch=hash_table)](https://travis-ci.org/ellezv/data_structures)
 
 This repo contains implementations of various Data Structures in Python (2 and 3).
 
@@ -37,8 +37,12 @@ This repo contains implementations of various Data Structures in Python (2 and 3
     - Tests: test_simple.graph.py
 
 ## Binary Search Tree:
-    - Module: binaray_search_tree.py
+    - Module: binary_search_tree.py
     - Tests: test_bst.py
+
+## Hash Table:
+    - Module: hash_table.py
+    - Tests: test_hash_table.py
 
 ## Authors:
     * Sera Smith
