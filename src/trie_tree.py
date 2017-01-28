@@ -56,12 +56,22 @@ class TrieTree(object):
                 if len(current_letter.keys()):
                     return
             else:
-                return
+                raise KeyError("Cannot remove a word that is not in the Trie.")
             nested.pop(0)
             for idx, letter in enumerate(value[::-1]):
-                import pdb; pdb.set_trace()
-                if len(nested[idx][letter].keys()) > 1:
-                    return
+                if len(nested[idx].keys()) > 1:
+                    self._delete_word(nested[idx][letter], value)
+                    break
                 else:
-                    nested[idx] = letter
-        raise KeyError("Cannot remove a word that is not in the Trie.")
+                    self._delete_word(nested[idx][letter], value)
+            self._size -= 1
+            return
+
+    def _delete_word(self, nested_dict, value):
+            """Helper function to delete nested dictionary."""
+            current_letter = self._root
+            for letter in value:
+                if current_letter[letter] == nested_dict:
+                    del current_letter[letter]
+                    return
+                current_letter = current_letter[letter]
