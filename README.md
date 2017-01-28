@@ -1,5 +1,5 @@
 # Data Structures
-[![Build Status](https://travis-ci.org/ellezv/data_structures.svg?branch=bst_delete)](https://travis-ci.org/ellezv/data_structures)
+[![Build Status](https://travis-ci.org/ellezv/data_structures.svg?branch=hash_table)](https://travis-ci.org/ellezv/data_structures)
 
 This repo contains implementations of various Data Structures in Python (2 and 3).
 
