@@ -17,11 +17,13 @@ setup(
         'deque',
         'priority_queue',
         'binheap',
-        'simple_graph'
+        'simple_graph',
+        'trie_tree',
+        'merge_sort'
     ],
     package_dir={'': 'src'},
     install_requires=[],
     extras_require={
-        "test": ["tox", "pytest", "pytest-watch", "pytest-cov"]
+        "test": ["tox", "pytest", "pytest-cov"]
     },
 )
