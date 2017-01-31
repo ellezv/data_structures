@@ -6,8 +6,9 @@ import math
 
 def merge_sort(input_list):
     """Merge sort."""
-    front_half = input_list[:math.floor(len(input_list) / 2)]
-    back_half = input_list[math.floor(len(input_list) / 2):]
+    index = int(math.floor(len(input_list) // 2))
+    front_half = input_list[:index]
+    back_half = input_list[index:]
     if len(front_half) > 1:
         front_half = merge_sort(front_half)
     if len(back_half) > 1:
@@ -23,4 +24,3 @@ def merge_sort(input_list):
     else:
         sorted_list += back_half
     return sorted_list
-

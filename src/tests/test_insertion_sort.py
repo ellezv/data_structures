@@ -18,6 +18,6 @@ def test_far_more_complex_list():
     large_list = [i for i in range(5000)]
     test_list = []
     for i in large_list:
-        test_list.insert(math.floor(i % 7), i)
+        test_list.insert(int(math.floor(i % 7)), i)
     sort = insertion_sort(test_list)
     assert sort == large_list[::-1]
