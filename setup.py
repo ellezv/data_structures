@@ -6,7 +6,7 @@ setup(
     name="Data structures",
     description="Implementations of various data structures in Python",
     version=0.1,
-    author="Maelle Vance, Sera Smith, Ben Shields",
+    author="Maelle Vance, Sera Smith, Ben Shields, Joey DeRosa",
     author_email="maellevance@gmail.com, seras37@gmail.com",
     license="MIT",
     py_modules=[
@@ -19,7 +19,11 @@ setup(
         'binheap',
         'simple_graph',
         'trie_tree',
-        'merge_sort'
+        'binary_search_tree',
+        'hash_table',
+        'trie_tree',
+        'merge_sort',
+        'insertion_sort'
     ],
     package_dir={'': 'src'},
     install_requires=[],
