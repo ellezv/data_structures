@@ -23,7 +23,8 @@ setup(
         'hash_table',
         'trie_tree',
         'merge_sort',
-        'insertion_sort'
+        'insertion_sort',
+        'quick_sort'
     ],
     package_dir={'': 'src'},
     install_requires=[],

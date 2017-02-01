@@ -1,0 +1,1 @@
+"""Tests for quick sort module."""
