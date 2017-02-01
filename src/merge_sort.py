@@ -31,14 +31,18 @@ if __name__ == "__main__":
 
     easy_sort_time = timeit.repeat(stmt="merge_sort([2,3,1])", setup="from merge_sort import merge_sort", number=500, repeat=1)
     complex_sort_time = timeit.repeat(stmt="merge_sort([i for i in range(1000)][::-1])", setup="from merge_sort import merge_sort", number=500, repeat=1)
-    output = """merge sort is a simple sorting algorithm that builds the final sorted array (or list) one item at a time.
-
+    output = """
+    Merge sort is an efficient, general-purpose, comparison-based sorting algorithm. It uses a divide and conquer approach.
+    1- Divide the unsorted list into n sublists, each containing 1 element (a list of 1 element is considered sorted).
+    2- Repeatedly merge sublists to produce new sorted sublists until there is only 1 sublist remaining.
     Input: [2,3,1]
     number of runs: 500
     average time: {0} seconds
 
     Input: [i for i in range(1000)]
     number of runs: 500
-    average time: {1} seconds""".format(easy_sort_time, complex_sort_time)
+    average time: {1} seconds
+    """.format(easy_sort_time[0], complex_sort_time[0])
+
 
     print(output)
