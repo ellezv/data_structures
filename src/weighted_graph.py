@@ -74,10 +74,12 @@ class Graph(object):
 
     def del_edge(self, n1, n2):
         """Delete a given edge from the graph."""
-        if n1 in self._nodes.keys() and n2 in self._nodes[n1]:
-            self._nodes[n1].remove(n2)
-        else:
-            raise ValueError("This edge does not exist.")
+        if n1 in self._nodes.keys():
+            for each in self._nodes[n1]:
+                if n2 in each:
+                    self._nodes[n1].remove(each)
+                    return
+        raise ValueError("This edge does not exist.")
 
     def has_node(self, node):
         """Return true is node is in graph, false if not."""
@@ -93,8 +95,9 @@ class Graph(object):
         """Return True if there is an edge connecting n1 to n2 False if not."""
         if not self.has_node(n1) or not self.has_node(n2):
             raise KeyError
-        if n2 in self._nodes[n1]:
-            return True
+        for each in self._nodes[n1]:
+            if n2 in each:
+                return True
         return False
 
     def depth_first_traversal(self, start, prev=None):
