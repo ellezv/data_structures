@@ -65,6 +65,12 @@ def test_add_edge_on_full_graph(full_graph):
     assert full_graph._nodes["c"] == [("a", 1)]
 
 
+def test_add_edge_on_full_graph_w_weight(full_graph):
+    """Add an edge to full graph with weight."""
+    full_graph.add_edge("c", "a", 10)
+    assert full_graph._nodes["c"] == [("a", 10)]
+
+
 def test_nodes_empty_graph(empty_graph):
     """The nodes method returns an empty list for an empty graph."""
     assert empty_graph.nodes() == []
