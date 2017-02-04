@@ -89,3 +89,41 @@ def test_binheap_push_two_values_pop_one_value():
     new_binheap.push(4)
     new_binheap.pop()
     assert new_binheap._container == [4]
+
+
+def test_binheap_push_then_pop_multiple():
+    """Tests push and pop sequence"""
+    from binheap import Binheap
+    new_binheap = Binheap()
+    new_binheap.push(1)
+    new_binheap.push(2)
+    new_binheap.push(3)
+    new_binheap.push(4)
+    new_binheap.push(5)
+    new_binheap.push(6)
+    new_binheap.push(7)
+    new_binheap.push(8)
+    new_binheap.push(9)
+    assert new_binheap._container == [9, 8, 6, 7, 3, 2, 5, 1, 4]
+    x = new_binheap.pop()
+    print(new_binheap._container)
+    print(x)
+    assert new_binheap._container == [8, 7, 5, 6, 3, 2, 4, 1]
+    # new_binheap.push(10)
+    # assert new_binheap._container == [10, 8, 5, 7, 3, 2, 4, 1, 6]
+    # new_binheap.push(11)
+    # assert new_binheap._container == [11, 10, 5, 7, 8, 2, 4, 1, 6, 3]
+    # new_binheap.pop()
+    # assert new_binheap._container == [10, 8, 4, 7, 5, 2, 3, 1, 6]
+    # new_binheap.pop()
+    # assert new_binheap._container == [8, 7, 4, 6, 5, 2, 3, 1]
+    # new_binheap.pop()
+    # new_binheap.pop()
+    # new_binheap.pop()
+    # new_binheap.pop()
+    # new_binheap.pop()
+    # new_binheap.pop()
+    # new_binheap.pop()
+    # assert new_binheap._container == [1]
+    # new_binheap.pop()
+    # assert new_binheap._container == []
