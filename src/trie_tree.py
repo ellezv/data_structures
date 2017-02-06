@@ -43,22 +43,39 @@ class TrieTree(object):
         """Will remove the given string from the trie."""
         if type(value) is str:
             current_letter = self._root
+            nested = []
             for letter in value:
                 try:
                     current_letter = current_letter[letter]
+                    nested.insert(0, current_letter)
+
                 except KeyError:
-                    break
+                    raise KeyError("Cannot remove a word that is not in the Trie.")
             if "$" in current_letter.keys():
                 del(current_letter['$'])
                 if len(current_letter.keys()):
+                    self._size -= 1
                     return
-            for letter in value[::-1]:
-                current_letter = letter
-                if current_letter is {}:
-                    del current_letter
-                else:
+            else:
+                raise KeyError("Cannot remove a word that is not in the Trie.")
+            nested.pop(0)
+            for idx, letter in enumerate(value[::-1]):
+                if len(nested[idx].keys()) > 1:
+                    self._delete_word(nested[idx][letter], value)
                     break
-        raise KeyError("Cannot remove a word that is not in the Trie.")
+                else:
+                    self._delete_word(nested[idx][letter], value)
+            self._size -= 1
+            return
+
+    def _delete_word(self, nested_dict, value):
+            """Helper function to delete nested dictionary."""
+            current_letter = self._root
+            for letter in value:
+                if current_letter[letter] == nested_dict:
+                    del current_letter[letter]
+                    return
+                current_letter = current_letter[letter]
 
     def traversal(self, string):
         """Depth first traversal."""
@@ -76,7 +93,7 @@ class TrieTree(object):
                     yield item
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     tt = TrieTree()
     words = ['otter', 'other', 'apple', 'apps', 'tea', 'teabag', 'teapot']
     for i in words:
