@@ -52,28 +52,34 @@ class Graph(object):
         else:
             self._nodes[node] = []
 
-    def add_edge(self, n1, n2):
+    def add_edge(self, n1, n2, weight=1):
         """Add a single-directional edge connecting n1 to n2."""
         self._nodes.setdefault(n1, [])
         self._nodes.setdefault(n2, [])
-        if n2 not in self._nodes[n1]:
-            self._nodes[n1].append(n2)
-        else:
-            raise ValueError("This edge already exists.")
+        for each in self._nodes[n1]:
+            if n2 in each:
+                self._nodes[n1].remove(each)
+                break
+        self._nodes[n1].append((n2, weight))
 
     def del_node(self, node):
         """Delete a given node from the graph."""
         if node in self._nodes.keys():
             del self._nodes[node]
+            for each in self.edges():
+                if each[1][0] == node:
+                    self.del_edge(each[0], each[1])
         else:
             raise ValueError("This node is not in the graph")
 
     def del_edge(self, n1, n2):
         """Delete a given edge from the graph."""
-        if n1 in self._nodes.keys() and n2 in self._nodes[n1]:
-            self._nodes[n1].remove(n2)
-        else:
-            raise ValueError("This edge does not exist.")
+        if n1 in self._nodes.keys():
+            for each in self._nodes[n1]:
+                if n2 in each:
+                    self._nodes[n1].remove(each)
+                    return
+        raise ValueError("This edge does not exist.")
 
     def has_node(self, node):
         """Return true is node is in graph, false if not."""
@@ -89,8 +95,9 @@ class Graph(object):
         """Return True if there is an edge connecting n1 to n2 False if not."""
         if not self.has_node(n1) or not self.has_node(n2):
             raise KeyError
-        if n2 in self._nodes[n1]:
-            return True
+        for each in self._nodes[n1]:
+            if n2 in each:
+                return True
         return False
 
     def depth_first_traversal(self, start, prev=None):
@@ -102,7 +109,9 @@ class Graph(object):
         if start in prev:
             return []
         path_list = [start]
-        nodes = self._nodes[start]
+        nodes = []
+        for each in self._nodes[start]:
+            nodes.append(each[0])
         prev.append(start)
         for node in nodes:
             path_list.extend(self.depth_first_traversal(node, prev))
@@ -117,9 +126,10 @@ class Graph(object):
             parent = [parent]
         children = []
         for item in parent:
-            for edge in self._nodes[item]:
-                if edge not in path_list:
-                    children.append(edge)
+            if self._nodes[item]:
+                for edge in self._nodes[item]:
+                    if edge[0] not in path_list:
+                        children.append(edge[0])
         path_list.extend(children)
         if len(children) == 0:
             return path_list
