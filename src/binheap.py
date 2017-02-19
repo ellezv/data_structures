@@ -39,6 +39,7 @@ class Binheap(object):
 
     def organize_binheap_push(self):
         """Organize the binary heap according to the heaps rules.
+
         This function is optimized for push ie only compare the newly pushed
         value to parents and organize accordingly.
 
@@ -57,6 +58,7 @@ class Binheap(object):
 
     def organize_binheap_pop(self):
         """Organize the binary heap according to the heaps rules.
+
         This function is optimized for pop ie compare all values in the
         heap to parents and organize accordingly.
 
