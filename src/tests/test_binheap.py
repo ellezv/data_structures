@@ -13,11 +13,17 @@ PARAMS_MULTIPLE_UNORDERED = [
 ]
 
 
-def test_init_empty():
-    """Test binary heap empty on init."""
+@pytest.fixture
+def a_binheap():
+    """Return a binheap."""
     from binheap import Binheap
-    new_binheap = Binheap()
-    assert new_binheap._container == []
+    a_binheap = Binheap()
+    return a_binheap
+
+
+def test_init_empty(a_binheap):
+    """Test binary heap empty on init."""
+    assert a_binheap._container == []
 
 
 def test_init_binheap():
@@ -42,76 +48,62 @@ def test_binheap_init_multiple_unordered_2():
     assert new_binheap._container == [4, 3, 2, 1]
 
 
-def test_binheap_push_single_value_container_head():
+def test_binheap_push_single_value_container_head(a_binheap):
     """Test push on binary heap."""
-    from binheap import Binheap
-    new_binheap = Binheap()
-    new_binheap.push(1)
-    assert new_binheap._container == [1]
+    a_binheap.push(1)
+    assert a_binheap._container == [1]
 
 
-def test_binheap_push_two_values_second_greater_than():
+def test_binheap_push_two_values_second_greater_than(a_binheap):
     """Test push on binary heap."""
-    from binheap import Binheap
-    new_binheap = Binheap()
-    new_binheap.push(1)
-    new_binheap.push(2)
-    assert new_binheap._container == [2, 1]
+    a_binheap.push(1)
+    a_binheap.push(2)
+    assert a_binheap._container == [2, 1]
 
 
-def test_binheap_push_two_values_second_less_than():
+def test_binheap_push_two_values_second_less_than(a_binheap):
     """Test push on binary heap."""
-    from binheap import Binheap
-    new_binheap = Binheap()
-    new_binheap.push(2)
-    new_binheap.push(1)
-    assert new_binheap._container == [2, 1]
+    a_binheap.push(2)
+    a_binheap.push(1)
+    assert a_binheap._container == [2, 1]
 
 
-def test_binheap_push_multiple_unordered():
+def test_binheap_push_multiple_unordered(a_binheap):
     """Test push on binary heap."""
-    from binheap import Binheap
-    new_binheap = Binheap()
-    new_binheap.push(5)
-    new_binheap.push(4)
-    new_binheap.push(6)
-    new_binheap.push(3)
-    new_binheap.push(7)
-    new_binheap.push(2)
-    new_binheap.push(9)
-    assert new_binheap._container == [9, 6, 7, 3, 4, 2, 5]
+    a_binheap.push(5)
+    a_binheap.push(4)
+    a_binheap.push(6)
+    a_binheap.push(3)
+    a_binheap.push(7)
+    a_binheap.push(2)
+    a_binheap.push(9)
+    assert a_binheap._container == [9, 6, 7, 3, 4, 2, 5]
 
 
-def test_binheap_push_one_value_pop_one_value():
+def test_binheap_push_one_value_pop_one_value(a_binheap):
     """Test push on binary heap."""
-    from binheap import Binheap
-    new_binheap = Binheap()
-    new_binheap.push(2)
-    new_binheap.pop()
-    assert new_binheap._container == []
+    a_binheap.push(2)
+    a_binheap.pop()
+    assert a_binheap._container == []
 
 
-def test_binheap_push_two_values_pop_one_value():
+def test_binheap_push_two_values_pop_one_value(a_binheap):
     """Test push on binary heap."""
-    from binheap import Binheap
-    new_binheap = Binheap()
-    new_binheap.push(5)
-    new_binheap.push(4)
-    new_binheap.pop()
-    assert new_binheap._container == [4]
+    a_binheap.push(5)
+    a_binheap.push(4)
+    a_binheap.pop()
+    assert a_binheap._container == [4]
 
 
-def test_binheap_push_then_pop_multiple():
+def test_binheap_push_then_pop_multiple(a_binheap):
     """Test push and pop sequence."""
-    from binheap import Binheap
-    new_binheap = Binheap()
-    new_binheap.push(1)
-    new_binheap.push(2)
-    new_binheap.push(3)
-    new_binheap.push(4)
-    new_binheap.push(5)
-    new_binheap.push(6)
-    new_binheap.push(7)
-    new_binheap.push(8)
-    new_binheap.push(9)
-    assert new_binheap.pop() == 9
+    a_binheap.push(1)
+    a_binheap.push(2)
+    a_binheap.push(3)
+    a_binheap.push(4)
+    a_binheap.push(5)
+    a_binheap.push(6)
+    a_binheap.push(7)
+    a_binheap.push(8)
+    a_binheap.push(9)
+    assert a_binheap.pop() == 9
