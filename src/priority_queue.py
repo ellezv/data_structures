@@ -4,9 +4,14 @@
 class PriorityQueue(object):
     """That's it."""
 
-    def __init__(self):
+    def __init__(self, value=None):
         """Initialize a priority queue with default value as None."""
         self._container = {}
+        if value and hasattr(value, "__iter__"):
+            for item in value:
+                self.insert(item[0], item[1])
+        elif value:
+            raise TypeError('Initial value must be an iterable!')
 
     def insert(self, value, priority=0):
         """Insert tuple in priority queue."""
