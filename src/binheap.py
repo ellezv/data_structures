@@ -49,10 +49,10 @@ class Binheap(object):
                 Initial parent index is (container length - 2) / 2 floored.
         """
         a = -1
-        b = int((len(self._container) - 2) / 2)
+        b = int((len(self._container) - 2) / 2.)
         while self._container[a] > self._container[b]:
             self._container[a], self._container[b] = self._container[b], self._container[a]
-            a, b = b, int((b - 1) / 2)
+            a, b = b, int((b - 1) / 2.)
             if self._container[a] is self._container[0]:
                 break
 
@@ -68,7 +68,7 @@ class Binheap(object):
         while cond == 1:
             for i in range(1, len(self._container) + 1):
                 ind = len(self._container) - i
-                par = int((ind - 1) / 2)
+                par = int((ind - 1) / 2.)
                 if ind == 0:
                     cond = 0
                     print(cond)
