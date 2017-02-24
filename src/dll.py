@@ -47,7 +47,8 @@ class DbLinkedList():
         if self.head:
             returned_value = self.head.value
             self.head = self.head.next
-            self.head.previous = None
+            if self.head is not None:
+                self.head.previous = None
             self.length -= 1
             return returned_value
         raise ValueError("Cannot pop from an empty list")
