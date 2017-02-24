@@ -30,7 +30,7 @@ def test_queue_dequeue():
 
 
 def test_init_queue():
-    """Test a initiation of queue."""
+    """Test an initiation of queue."""
     from queue import Queue
     new_queue = Queue()
     assert new_queue.length == 0
@@ -78,7 +78,7 @@ def test_dequeue_return_value(new_queue):
 
 
 def test_peek_with_one_value():
-    """Test peak from list with one value."""
+    """Test peek from list with one value."""
     from queue import Queue
     new_queue = Queue(1)
     assert new_queue.peek() is 1
