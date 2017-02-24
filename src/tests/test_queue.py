@@ -1,6 +1,6 @@
 """Test for our queue module."""
-
 import pytest
+from queue import Queue
 
 
 @pytest.fixture
@@ -13,21 +13,35 @@ def new_queue():
     return queue
 
 
+def test_peek():
+    """Test queue peek."""
+    q = Queue()
+    q.enqueue(5)
+    peek = q.peek()
+    assert(peek == 5)
+
+
+def test_queue_dequeue():
+    """Test queue dequeue."""
+    q = Queue()
+    q.enqueue(5)
+    val = q.dequeue()
+    assert(val == 5)
+
+
 def test_init_queue():
-    """Test a initiation of queue."""
+    """Test an initiation of queue."""
     from queue import Queue
     new_queue = Queue()
     assert new_queue.length == 0
-    assert new_queue.head is None
-    assert new_queue.tail is None
+    assert new_queue.peek() is None
 
 
 def test_init_queue_with_value():
     """General test to initiate queue with value."""
     from queue import Queue
     new_queue = Queue(5)
-    assert new_queue.head.value == 5
-    assert new_queue.tail.value == 5
+    assert new_queue.peek() == 5
     assert new_queue.length == 1
 
 
@@ -40,13 +54,7 @@ def test_length_enqueue_in_queue_with_value(new_queue):
 def test_head_enqueue_in_queue_with_value(new_queue):
     """Test value of head stay the same when enqueuing a queue with value."""
     new_queue.enqueue(6)
-    assert new_queue.head.value == 5
-
-
-def test_tail_enqueue_in_queue_with_value(new_queue):
-    """Test enqueue sets a new tail."""
-    new_queue.enqueue(6)
-    assert new_queue.tail.value == 6
+    assert new_queue.peek() == 5
 
 
 def test_dequeue_from_empty_list_raise_err():
@@ -61,7 +69,7 @@ def test_dequeue_from_empty_list_raise_err():
 def test_dequeue_sets_new_head(new_queue):
     """Test dequeue from a list with value will set a new head."""
     new_queue.dequeue()
-    assert new_queue.head.value == 4
+    assert new_queue.peek() == 4
 
 
 def test_dequeue_return_value(new_queue):
@@ -70,21 +78,28 @@ def test_dequeue_return_value(new_queue):
 
 
 def test_peek_with_one_value():
-    """Test peak from list with one value."""
+    """Test peek from list with one value."""
     from queue import Queue
     new_queue = Queue(1)
-    assert new_queue.peek() is None
+    assert new_queue.peek() is 1
+
+
+def test_peek_on_empty_queue():
+    """Test peak from empty queue."""
+    from queue import Queue
+    empty_queue = Queue()
+    assert empty_queue.peek() is None
 
 
 def test_peek_returns_second_value(new_queue):
     """Test that return value of second in list."""
-    assert new_queue.peek() == 4
+    assert new_queue.peek() == 5
 
 
 def test_peek_after_dequeue(new_queue):
     """Test that return value of second in list after dequeued list."""
     new_queue.dequeue()
-    assert new_queue.peek() == 3
+    assert new_queue.peek() == 4
 
 
 def test_size_empty_list():
